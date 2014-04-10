@@ -39,30 +39,59 @@ jQuery.browser = {};
 
 </head>
 <body>
-
-			<div id="photo-demo" style="width: 500px; height: 400px;">
-			</div>
-
+	<div id="topcontrols"><p>hello</p></div>
+	<div id="photo-demo" style="width: 1280px; height: 720px;">
+	
+	</div>
+<div id="bottomcontrols"><p>goodbye</p></div>
+	
 
 <script  type="text/javascript" >
 function drawInitial(svg) {
-	svg.circle(75, 75, 50, {fill: 'none', stroke: 'red', 'stroke-width': 3});
-	var g = svg.group({stroke: 'black', 'stroke-width': 2});
-	svg.line(g, 15, 75, 135, 75);
-	svg.line(g, 75, 15, 75, 135);
-	svg.load('map3.svg', {addTo: false, changeSize: false}); 
-	 resetSize(svg);
+	//svg.circle(75, 75, 50, {fill: 'none', stroke: 'red', 'stroke-width': 3});
+	//svg.line(g, 15, 75, 135, 75);
+	//svg.line(g, 75, 15, 75, 135);
+	svg.load('map3.svg', {addTo: true, changeSize: false});
+	var g = svg.group({stroke: 'red', 'stroke-width': 2});
+	
+	//var s = svg.svg('get');
+	//var sym = s.getElementById('blankhex');
+//	svg.use('#blankhex');
+var toggle=0;
+
+var arrX=0,arrY=0;
+for (var j = 0; j < 720; j+=6) {
+	if(toggle==1){toggle=0;}else{toggle=1;};
+arrX++;
+arrY=0;
+for (var i = 0; i < 1280; i+= 18) {
+arrY++;
+	var q =0;
+if(toggle==1)
+	{q=i}
+else
+	{q=i+8}
+
+	var tex = 'svguse'+parseInt(arrX)+'x'+parseInt(arrY);
+
+		svg.use(x=q,y=j,width='12px',height='12px',href='#blankhex',{id:tex});
+	
+
+	};
+};
+
+//svg.use(x=30,y=30,width=30,height=30,href='#blankhex');
+//svg.use(x=40,y=40,width=40,height=40,href='#blankhex');
+
+//
+//svg.load($('#loadURL').val(), {addTo: $('#addTo')[0].checked, 
+//        changeSize: false, onLoad: loadDone}); 
+
+
+
 }
-	//$('#photo-demo').svg(drawInitial);
- $('#photo-demo').svg({loadURL: 'map3.svg'});
-
-
-
-/*	$('#svginline').svg(); 
-    var svg = $('#svginline').svg('get'); 
-    svg.load('map3.svg', {addTo: false, changeSize: false}); 
-    resetSize(svg); 
- */
+	$('#photo-demo').svg(drawInitial);
+ //$('#photo-demo').svg({loadURL: 'map3.svg'});
 
 </script>
 
@@ -107,9 +136,6 @@ function drawInitial(svg) {
 				}
 			});
 
-		}
-		else {
-			$('#photo-demo').html('');
 		}
 
 
