@@ -1,8 +1,0 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="2in" height="2.6119651002422in" viewBox="0 0 144 188.061487217439" xmlns="http://www.w3.org/2000/svg" version="1.1">
-<desc>Hex grid</desc>
-<g id="hexes">
-<polygon id="0" style="fill:none;stroke:#000000;stroke-width:2.16px" points="144,62.3538290724796 108.000000074612,124.707658101882 36.0000001492249,124.707658231114 0,62.3538293309447 35.9999997015502,1.72310052448665e-07 107.999999626938,-2.15387579771686e-07"/>
-</g>
-</svg>
