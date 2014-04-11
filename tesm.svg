@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1280"
+   height="720"
+   id="svg4352"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="tesm.svg">
+  <metadata
+     id="metadata7216">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="745"
+     id="namedview7214"
+     showgrid="false"
+     inkscape:zoom="1.2639534"
+     inkscape:cx="1099.88"
+     inkscape:cy="466.73165"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4352" />
+  <g
+     stroke="red"
+     stroke-width="2"
+     id="g3" />
+ 
+  <defs
+     id="defs4354">
+    <pattern
+       id="img1"
+       patternUnits="userSpaceOnUse"
+       width="35"
+       height="38">
+      <image
+         xlink:href="Male_Warrior_Dance2.gif"
+         x="0"
+         y="0"
+         width="35"
+         height="38"
+         id="image7207" />
+    </pattern>
+  </defs>
+  <defs
+     id="defs4355">
+    <symbol
+       id="blankhex">
+      <polygon
+         points="7.2,24.941532 0,12.470766 7.1999999,3.446201e-008 21.6,-4.3077517e-008 28.8,12.470766 21.6,24.941532 "
+         style="stroke:#000000;stroke-width:0.51840001px"
+         id="0"
+         fill="url(#img1)" />
+    </symbol>
+  </defs>
+  <g
+     groupmode="layer"
+     id="layer4"
+     label="Stage"
+     insensitive="true">
+    <rect
+       style="fill:#00ff00;stroke:none"
+       id="rect16134"
+       width="1272"
+       height="222"
+       x="6"
+       y="492" />
+  </g>
+  <image
+     y="99.936897"
+     x="1021.2017"
+     id="image10201"
+     xlink:href="Male_Warrior_Dance2.gif"
+     height="38"
+     width="35" />
+</svg>

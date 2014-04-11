@@ -51,33 +51,32 @@ function drawInitial(svg) {
 	//svg.circle(75, 75, 50, {fill: 'none', stroke: 'red', 'stroke-width': 3});
 	//svg.line(g, 15, 75, 135, 75);
 	//svg.line(g, 75, 15, 75, 135);
-	svg.load('map3.svg', {addTo: true, changeSize: false});
+	svg.load('tesm.svg', {addTo: true, changeSize: false});
 	var g = svg.group({stroke: 'red', 'stroke-width': 2});
 	
 	//var s = svg.svg('get');
 	//var sym = s.getElementById('blankhex');
 //	svg.use('#blankhex');
-var toggle=0;
-var xstepB=1280/(60),xstepA=1280/40,ystep=720/18;
-var arrX=0,arrY=0;
-for (var j = 0; j < 720; j+=ystep) {
-	if(toggle==1){toggle=0;}else{toggle=1;};
-arrX++;
-arrY=0;
-for (var i = 0; i < 1280; i+= xstepA) {
-arrY++;
-	var q =0;
-if(toggle==1)
-	{q=i}
-else
-	{q=i+(xstepA/2)}
+	var toggle=0;
+	var xstepB=1280/(60),xstepA=1280/30,ystep=720/60;
+	var arrX=0,arrY=0;
+	for (var j = 0; j < 720; j+=ystep) {
+		if(toggle==1){toggle=0;}else{toggle=1;};
+	arrX++;
+	arrY=0;
+	for (var i = 0; i < 1280; i+= xstepA) {
+	arrY++;
+		var q =0;
+	if(toggle==1)
+		{q=i}
+	else
+		{q=i+(xstepA/2)}
 
 	var tex = 'svguse'+parseInt(arrX)+'x'+parseInt(arrY);
 
-		svg.use(x=q,y=j,width=xstepB+'px',height=ystep+'px',href='#blankhex',
+		svg.use(x=q,y=j,width='185px',height='200px',href='#blankhex',
 			{
 				id:tex
-
 			}
 			);
 		
