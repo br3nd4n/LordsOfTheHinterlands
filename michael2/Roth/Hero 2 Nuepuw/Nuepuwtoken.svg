@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40"
+   height="40"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="Nuepuwtoken.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4.2846251"
+     inkscape:cx="69.575774"
+     inkscape:cy="26.029025"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer9"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="752"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="background"
+     transform="translate(0,-40)"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#800000;stroke:#000000;stroke-width:0.4976809"
+       id="rect3005"
+       width="39.830032"
+       height="39.96785"
+       x="0.32123318"
+       y="40.411091" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="tokenshape"
+     transform="translate(0,-40)"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="name"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Image"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="attstat"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="Stastat"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer9"
+     inkscape:label="healstat"
+     sodipodi:insensitive="true">
+    <g
+       id="g7042">
+      <polygon
+         transform="matrix(1.2499999,0,0,1.2499999,-510.65803,-322.6053)"
+         points="432,261.88608 439.2,274.35685 432,286.82761 417.6,286.82761 410.4,274.35685 417.6,261.88608 "
+         style="fill:#f9f9f9;stroke:#000000;stroke-width:0.43200001px"
+         id="770" />
+      <image
+         width="18.39324"
+         height="5.9658957"
+         xlink:href="file:///Users/Michael/Desktop/Roth/Hero%202%20Nuepuw/name.png"
+         id="image6779"
+         x="11.108543"
+         y="6.7927051" />
+      <image
+         width="23.752373"
+         height="20.484875"
+         xlink:href="file:///Users/Michael/Desktop/Roth/Hero%202%20Nuepuw/Nuepuwimage.png"
+         id="image6826"
+         x="7.8454933"
+         y="11.669632" />
+      <image
+         width="9.0198698"
+         height="8.5207586"
+         xlink:href="file:///Users/Michael/Desktop/Roth/Statcircles/Attackstatcircle.png"
+         id="image6908"
+         x="4.9424691"
+         y="16.601423" />
+      <image
+         width="10.420225"
+         height="10.854686"
+         xlink:href="file:///Users/Michael/Desktop/Roth/Statcircles/Staminastatcircle.png"
+         id="image6971"
+         x="14.744957"
+         y="24.770166" />
+      <image
+         width="9.0198689"
+         height="8.5207586"
+         xlink:href="file:///Users/Michael/Desktop/Roth/Statcircles/Healthstatcircle.png"
+         id="image7034"
+         x="25.947792"
+         y="17.301601" />
+    </g>
+  </g>
+</svg>

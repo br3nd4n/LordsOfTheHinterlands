@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 280 330" version="1.0">
+  <defs id="defs4">
+    <linearGradient id="linearGradient3432" y2="182.59" gradientUnits="userSpaceOnUse" x2="606.69" gradientTransform="matrix(-.42331 .72012 .72012 .42331 288.29 -96.403)" y1="190.41" x1="543.03">
+      <stop id="stop6745" stop-color="#d9d9d9" offset="0"/>
+      <stop id="stop6747" stop-color="#a8a8a8" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3434" y2="295.15" gradientUnits="userSpaceOnUse" x2="409.18" gradientTransform="matrix(-.46863 .79722 .79722 .46863 296.17 -144.91)" y1="264.34" x1="236.7">
+      <stop id="stop3193" stop-color="#d9d9d9" offset="0"/>
+      <stop id="stop3195" stop-color="#949494" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3436" y2="239.17" gradientUnits="userSpaceOnUse" x2="241.62" gradientTransform="matrix(-.46417 .78964 .78964 .46417 295.8 -140.77)" y1="252.59" x1="347.3">
+      <stop id="stop2204" stop-color="#e0e0e0" offset="0"/>
+      <stop id="stop2206" stop-color="#fff" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3438" y2="367.44" gradientUnits="userSpaceOnUse" x2="213.43" gradientTransform="translate(-1.4496 -9.7357)" y1="393.19" x1="207.21">
+      <stop id="stop6365" stop-color="#222" offset="0"/>
+      <stop id="stop6367" stop-color="#451d00" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g id="layer1" transform="translate(-141.01 -88.877)">
+    <path id="path3219" d="m205.84 366.68s-31.67 31.3-57.23 34.81c-2.24 0.42 2.38 9.96 4.81 9.44 20.8-3.77 57.72-31.96 59.83-35.56 2.12-3.6-7.98-8.76-7.41-8.69z" fill-rule="evenodd" stroke="#979797" stroke-width=".6" fill="url(#linearGradient3432)"/>
+    <path id="path2164" d="m406.61 97.771c-7.7 75.439-131.43 201.69-150.75 220.21-19.32 18.53-50 45.16-51.35 46.24-0.46 0.78 10.12 15.49 10.86 15.54 0 0 14.18-15.98 19.44-10.59s7.96 9.27 12.46 6.17c4.51-3.1 193.66-171.51 159.34-277.57z" fill="url(#linearGradient3434)" fill-rule="evenodd"/>
+    <path id="path2168" d="m406.83 100.05c-10.92 80.3-130.81 199.15-149.6 217.67-18.88 18.61-49.69 44.82-51.03 45.88-0.45 0.77 8.14 15.6 8.87 15.65 0 0 15.42-17.55 20.78-9.8 117.52-105.98 183.6-219.52 170.98-269.4z" fill="url(#linearGradient3436)" fill-rule="evenodd"/>
+    <path id="path5335" d="m205.84 366.68s-31.67 31.3-57.23 34.81c-2.24 0.42 2.38 9.96 4.81 9.44 20.8-3.77 57.72-31.96 59.83-35.56 2.12-3.6-7.98-8.76-7.41-8.69z" fill="none"/>
+    <path id="path2166" d="m208.03 362.03s12.3 16.53 10.78 19.43-4.98 1.06-6.06-0.34c-1.08-1.39-10.15-14.69-10.61-16.48-0.47-1.79 3.19-7.04 5.89-2.61z" fill-rule="evenodd" stroke="#6b6b6b" stroke-width=".416" fill="url(#linearGradient3438)"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Katana/Sword</dc:title>
+        <dc:date>2007-10-26T17:08:43</dc:date>
+        <dc:description>An SVG of a Katana/Sword/Blade/Weapon thing I made when I was bored.</dc:description>
+        <dc:source>http://openclipart.org/detail/7426/katana/sword-by-dtrave</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>DTRave</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>blades</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>katan</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>melee weapons</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>sharp things</rdf:li>
+            <rdf:li>svg</rdf:li>
+            <rdf:li>sword</rdf:li>
+            <rdf:li>weapons</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
