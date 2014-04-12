@@ -51,38 +51,108 @@ function drawInitial(svg) {
 	//svg.circle(75, 75, 50, {fill: 'none', stroke: 'red', 'stroke-width': 3});
 	//svg.line(g, 15, 75, 135, 75);
 	//svg.line(g, 75, 15, 75, 135);
-	svg.load('tesm.svg', {addTo: true, changeSize: false});
+	svg.load('tesm2.svg', {addTo: true, changeSize: false});
 	var g = svg.group({stroke: 'red', 'stroke-width': 2});
 	
 	//var s = svg.svg('get');
 	//var sym = s.getElementById('blankhex');
 //	svg.use('#blankhex');
+
+
+var jqxhr = $.getJSON( "cards.json", function() {
+  console.log( "success" );
+})
+  .done(function() {
+    console.log( "second success" );
+  })
+  .fail(function(textstatus,error) {
+    console.log( textstatus + ", " + error );
+  })
+  .always(function() {
+    console.log( "complete" );
+  });
+ 
+// Perform other work here ...
+ 
+// Set another completion function for the request above
+jqxhr.complete(function() {
+	var jsonObj = jqxhr.responseJSON.cardlist.cards;
+	var arrX=0,arrY=0;
+	var newdefs = svg.defs('newdefs');
+
+	$.each(jsonObj,function(key,val){
+		arrX+=1;
+		var tex = 'svguse'+parseInt(arrX)+'x'+parseInt(arrX);
+		//$('#'+ tex).attr("xlink:href","");
+		console.log(key);
+
+
+		var sym = svg.symbol(newdefs,'sym'+key,0,0,35,35);
+		var qq = svg.clone(sym,$('#polyhex'));
+
+		svg.image(sym,0,0,35,35,val.battleImage,{id:'img'+key});
+
+		$('#'+ tex).attr("xlink:href",'sym'+key);
+		
+	});
+
+});
+
+
+
+
+
+/*
+generate grid
+
 	var toggle=0;
 	var xstepB=1280/(60),xstepA=1280/30,ystep=720/60;
 	var arrX=0,arrY=0;
-	for (var j = 0; j < 720; j+=ystep) {
+
+
+	//var j=612.9;
+	var j=107.1;
+	var i=91.635;
+
+
+
+
+	for (var myj=0; myj<18;myj++){
+
+	//for (var j = 612.9; j >0; j-=12) {
 		if(toggle==1){toggle=0;}else{toggle=1;};
 	arrX++;
 	arrY=0;
-	for (var i = 0; i < 1280; i+= xstepA) {
+
+	for (myi=0; myi<20;myi++){
+	//for (var i = 91.635; i < 1280; i+= 48) {
 	arrY++;
 		var q =0;
 	if(toggle==1)
 		{q=i}
 	else
-		{q=i+(xstepA/2)}
+		{q=i+24}
 
 	var tex = 'svguse'+parseInt(arrX)+'x'+parseInt(arrY);
 
-		svg.use(x=q,y=j,width='185px',height='200px',href='#blankhex',
+		svg.use(x=q,y=j,width='37px',height='32px',href='#axe',
 			{
 				id:tex
 			}
 			);
 		
 
+		i+=48;
 	};
+
+i=91.635;
+	j+=12;
+
 };
+
+
+*/
+
 
 //svg.use(x=30,y=30,width=30,height=30,href='#blankhex');
 //svg.use(x=40,y=40,width=40,height=40,href='#blankhex');
