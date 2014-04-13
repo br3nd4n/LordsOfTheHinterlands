@@ -1,6 +1,11 @@
 
 
-#battlefield_token ; {
+
+
+/* Battlefield style  */
+
+
+#battlefield_token : {
 
 	background-color: #ffffff;
 	width: px;
@@ -12,7 +17,7 @@
 }
 
 
-#battlefield_stat_attack ; {
+#battlefield_stat_attack : {
 
     background: #ff0000;
     width: 10px;
@@ -22,7 +27,7 @@
 	
 
 
-#battlefield_stat_stamina ; {
+#battlefield_stat_stamina : {
 
     background: #66ff00;
     width: 10px;
@@ -32,7 +37,7 @@
 	
 }
 
-#battlefield_stat_health ; {
+#battlefield_stat_health : {
 
     background: #66ffff;
     width: 10px;
@@ -48,20 +53,16 @@
 
 }
 
-#battlefield_token_destruction_image; {
+#battlefield_token_destruction_image : {
 	
-
-
 
 }
 
 
-#Battlefield_token_mouseover ; {
+#Battlefield_token_mouseover : {
 
-			
-
-
-			*//popup menu?
+		
+			/*  popup menu?  */
 
 			background-color: #000000;
 			background-image: url(   )  ;	
@@ -70,29 +71,25 @@
 			margin-left:   ;
 			margin-right:   ;
 
-
-				*// menu text? font //
-
-			il{
-
-			}
-
 }
 
-#Battlefield_token_onclick ; {
+#Battlefield_token_onclick : {
 	
-		*// darkend or make brighter //
+		/* darkend or make brighter */
 
 }
 
-#Battlefield_token_ondrag ; {
+#Battlefield_token_ondrag : {
 	
-     *//glow or shadow?///
+     /* glow or shadow?  */
 
 }
 
 
-#Basehero1_Smitty_catalog_image ; {
+											/*  Hero's  */
+
+
+#Basehero1_Smitty_catalog_image : {
 	
 				background-image: url(   )  ;
 				width: px;
@@ -104,7 +101,7 @@
 
 }
 
-#Basehero1_Smitty_rack_image ; {
+#Basehero1_Smitty_rack_image : {
 
 					background-image: url(   )  ;
 				width: px;
@@ -115,7 +112,7 @@
 
 }
 
-#Basehero1_Smitty_staging_image ; {
+#Basehero1_Smitty_staging_image : {
 	
 				background-image: url(   )  ;
 				width: px;
@@ -126,7 +123,7 @@
 
 }
 
-#Basehero1_Smitty_battle_image ; {
+#Basehero1_Smitty_battle_image : {
 
 				background-image: url(   )  ;
 				width: px;
@@ -136,3 +133,22 @@
 	
 
 }
+
+
+
+
+										/* Weapon's and equipment  */
+
+
+#baseaxe : {
+	
+
+	
+}
+
+
+
+
+
+
+
