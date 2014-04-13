@@ -23,6 +23,19 @@ jQuery.browser = {};
 </script>
 
 
+
+<script  type="text/javascript" >
+
+//game inits
+
+var libBuildings,curBuildings,libCards,curCards;
+
+
+
+</script>
+
+
+
 </head>
 <body>
 	<div id="topcontrols"><p>hello</p></div>
@@ -53,7 +66,12 @@ var jqxhr = $.getJSON( "cards.json", function() {
  
  
 jqxhr.complete(function() {
-	var jsonObj = jqxhr.responseJSON.cardlist.cards;
+	var libBuildings = jqxhr.responseJSON.cardFlow.buildings;
+	var libCards = jqxhr.responseJSON.cardFlow.cards;
+	
+console.log(libCards);
+console.log(libBuildings);
+
 	var arrX=0,arrY=0;
 	var newdefs = svg.defs('newdefs');
 
