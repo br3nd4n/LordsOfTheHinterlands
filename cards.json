@@ -1,26 +1,156 @@
 {
-    "cardlist": {
-        "title": "WorkingBetaCards",
-			"cards": {
-                "testWeapon": {
-                    "Title": "Test Weapon",
-					"CardType": "Weapon",
-					"HoverText": "This is a test weapon.",
-                    "menuImage":"",
-                    "trayImage":"",
-                    "battleImage":"axe.png",
+    "cardFlow": {
+        "title": "WorkingBeta",
+            "buildings":[
+            {   
+                "Title":"Town Hall",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":3,
+                "currentcards":0,
+                "cards":[
+                    "hero"
+                ]
+            },
+            {
+                "Title":"Barracks",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":2,
+                "currentcards":0,
+                "cards":[
+                    "fighter"
+                ]
+            },
+            {
+                "Title":"Barracks",
+                "level":2,
+                "cardspersecond":0.5,
+                "maxcards":2,
+                "currentcards":0,
+                "cards":[
+                    "bruiser"
+                ]
+            },
+
+            {
+                "Title":"Blacksmith",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":4,
+                "currentcards":0,
+                "cards":[
+                    "sword",
+                    "axe",
+                    "shield",
+                    "shield"
+                ]
+            },
+
+            {
+                "Title":"Infirmary",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":4,
+                "currentcards":0,
+                "cards":[
+                    "medic"
+                ]
+            },
+            
+            {
+                "Title":"Trainer",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":4,
+                "currentcards":0,
+                "cards":[
+                    "staminaBag"
+                ]
+            },
+
+            {
+                "Title":"BattleMaster",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":4,
+                "currentcards":0,
+                "cards":[
+                    "attackBag"
+                ]
+            },
+
+
+
+
+
+            {
+                "Title":"School",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":4,
+                "currentcards":0,
+                "cards":{
+                    "addSkill"
+                }
+            },
+
+
+            {
+                "Title":"Gym",
+                "level":1,
+                "cardspersecond":0.5,
+                "maxcards":4,
+                "currentcards":0,
+                "cards":[
+                    "addAttack",
+                    "addDefense"
+                ]
+                
+            }
+            ],
+
+			"cards": [
+                {
+                    "Title": "Test Sword",
+					"CardType": "sword",
+					"HoverText": "This is a test sword.",
 					"stats":{
                         "addAttackOnUse":2
                     }
                 },
+                {
+                    "Title": "Test Axe",
+                    "CardType": "axe",
+                    "HoverText": "This is a test axe.",
+                    "stats":{
+                        "addAttackOnUse":2
+                    }
+                },
+                {
+                    "Title": "Test Shield",
+                    "CardType": "shield",
+                    "HoverText": "This is a test shield.",
+                    "stats":{
+                        "addHealthOnUse":2
+                    }
+                },
 
-                "testHero": {
+
+                {
                     "Title": "Test Hero",
-                    "CardType": "Hero",
-                    "HoverText": "This is a test Hero.",
-                    "menuImage":"",
-                    "trayImage":"",
-                    "battleImage":"dwarf.png",
+                    "CardType": "hero",
+                    "HoverText": "This is the first test Hero.",
+                    "stats":{
+                        "health":2,
+                        "attack":2,
+                        "stamina":2
+                    }
+                },
+                {
+                    "Title": "Test Hero Two",
+                    "CardType": "hero",
+                    "HoverText": "This is the second test Hero.",
                     "stats":{
                         "health":2,
                         "attack":2,
@@ -28,25 +158,35 @@
                     }
                 },
                    
-                "testShield": {
-                    "Title": "Test Shield",
-                    "CardType": "Shield",
-                    "HoverText": "This is a test shield.",
-                    "menuImage":"",
-                    "trayImage":"",
-                    "battleImage":"golden_shield.png",
+  
+                {
+                    "Title": "Fighter",
+                    "CardType": "fighter",
+                    "HoverText": "This is the fighter.",
                     "stats":{
-                        "addHealthOnUse":2
+                        "health":2,
+                        "attack":2,
+                        "stamina":2
                     }
                 },
-
-                "testMedic": {
+                   
+  
+                {
+                    "Title": "Bruiser",
+                    "CardType": "bruiser",
+                    "HoverText": "This is the Bruiser.",
+                    "stats":{
+                        "health":2,
+                        "attack":2,
+                        "stamina":2
+                    }
+                },
+                   
+  
+                {
                     "Title": "Test Medic",
-                    "CardType": "Medic",
+                    "CardType": "medic",
                     "HoverText": "This is a test Medic.",
-                    "menuImage":"",
-                    "trayImage":"",
-                    "battleImage":"hypodermic.png",
                     "stats":{
                         "carry":2,
                         "stamina":3,
@@ -54,17 +194,52 @@
                     }
                 },
 
-                "testDoctorBag": {
-                    "Title": "Test Doctor Bag",
-                    "CardType": "DoctorBag",
-                    "HoverText": "This is a testdoctor bag.",
-                    "menuImage":"",
-                    "trayImage":"",
-                    "battleImage":"hypodermic.png",
+                {
+                    "Title": "Attack Bag",
+                    "CardType": "attackBag",
+                    "HoverText": "This is an attack bag.",
                     "stats":{
-                        "addStaminaOnUse":2
+                        "addTempAttack":2
+                    }
+                },
+                {
+                    "Title": "Stamina Bag",
+                    "CardType": "staminaBag",
+                    "HoverText": "This is a stamina bag.",
+                    "stats":{
+                        "addTempStamina":2
+                    }
+                },
+                
+                {   
+                    "Title": "Add Skill",
+                    "CardType": "addSkill",
+                    "HoverText": "This is skill buff.",
+                    "stats":{
+                        "addPermSkill":2
+                    }
+                },{
+                    "Title": "Add Health",
+                    "CardType": "addHealth",
+                    "HoverText": "This is a health buff.",
+                    "stats":{
+                        "addPermHealthBuff":2
+                    }
+                },
+                {
+                    "Title": "Add Stamina",
+                    "CardType": "addStamina",
+                    "HoverText": "This is a stamina buff.",
+                    "stats":{
+                        "addPermStamina":2
                     }
                 }
-            }
+
+
+            ]
+
+
+
+
         }
     }

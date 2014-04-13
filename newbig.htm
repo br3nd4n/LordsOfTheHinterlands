@@ -4,11 +4,11 @@
 	<meta name="viewport" content="initial-scale=1.0,width=device-width">
 	<title>Test</title>
 	
-	<script src="jquery-1.11.0.min.js"></script>
-<link rel="stylesheet" type="text/css" href="jquery.svg.css"> 
-<script type="text/javascript" src="jquery.svg.js"></script>
+	<script src="js/jquery-1.11.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.svg.css"> 
+<script type="text/javascript" src="js/jquery.svg.js"></script>
 
-
+	<script src="css/jquery-ui-1.10.4.custom.css"></script>
 
 <script  type="text/javascript" >
 jQuery.browser = {};
@@ -26,13 +26,18 @@ jQuery.browser = {};
 </head>
 <body>
 	<div id="topcontrols"><p>hello</p></div>
-	<div id="photo-demo" style="width: 1280px; height: 720px;">
-	
+	<div id="photo-demo" style="width: 1280px; height: 720px;">	
 	</div>
-<div id="bottomcontrols"><p>goodbye</p></div>
+<div id="bottomcontrols">
+
+
+
+
+</div>
 	
 
 <script  type="text/javascript" >
+
 function drawInitial(svg) {
 	svg.load('tesm2.svg', {addTo: true, changeSize: false});
 	
@@ -42,19 +47,11 @@ function drawInitial(svg) {
 var jqxhr = $.getJSON( "cards.json", function() {
   console.log( "success" );
 })
-  .done(function() {
-    console.log( "second success" );
-  })
   .fail(function(textstatus,error) {
     console.log( textstatus + ", " + error );
-  })
-  .always(function() {
-    console.log( "complete" );
   });
  
-// Perform other work here ...
  
-// Set another completion function for the request above
 jqxhr.complete(function() {
 	var jsonObj = jqxhr.responseJSON.cardlist.cards;
 	var arrX=0,arrY=0;
