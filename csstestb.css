@@ -1,0 +1,138 @@
+
+
+#battlefield_token ; {
+
+	background-color: #ffffff;
+	width: px;
+    height: px;
+    margin-left: auto;
+    margin-right: auto;
+	
+
+}
+
+
+#battlefield_stat_attack ; {
+
+    background: #ff0000;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+	
+
+
+#battlefield_stat_stamina ; {
+
+    background: #66ff00;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+	
+	
+}
+
+#battlefield_stat_health ; {
+
+    background: #66ffff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+	
+	
+}
+
+
+#battlefield_menu_button: {
+	
+
+}
+
+#battlefield_token_destruction_image; {
+	
+
+
+
+}
+
+
+#Battlefield_token_mouseover ; {
+
+			
+
+
+			*//popup menu?
+
+			background-color: #000000;
+			background-image: url(   )  ;	
+			weidth: ;
+			height: ;
+			margin-left:   ;
+			margin-right:   ;
+
+
+				*// menu text? font //
+
+			il{
+
+			}
+
+}
+
+#Battlefield_token_onclick ; {
+	
+		*// darkend or make brighter //
+
+}
+
+#Battlefield_token_ondrag ; {
+	
+     *//glow or shadow?///
+
+}
+
+
+#Basehero1_Smitty_catalog_image ; {
+	
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+
+
+}
+
+#Basehero1_Smitty_rack_image ; {
+
+					background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+
+}
+
+#Basehero1_Smitty_staging_image ; {
+	
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+
+}
+
+#Basehero1_Smitty_battle_image ; {
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+	
+
+}
