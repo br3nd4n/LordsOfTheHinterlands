@@ -1,0 +1,60 @@
+
+
+#battlefield_token ; {
+
+	background-color: #ffffff;
+	width: px;
+    height: px;
+    margin-left: auto;
+    margin-right: auto;
+	
+
+}
+
+
+#battlefield_stat_attack ; {
+
+    background: #ff0000;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+	
+
+}
+
+#battlefield_stat_stamina ; {
+
+    background: #66ff00;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+	
+	
+}
+
+#battlefield_stat_health ; {
+
+    background: #66ffff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+	
+	
+}
+
+
+#Basehero1_Smitty_battle_image ; {
+	
+
+}
+
+#Basehero1_Smitty_rack_image ; {
+	
+
+}
+
+#Basehero1_Smitty_catalog_image ; {
+	
+
+}
