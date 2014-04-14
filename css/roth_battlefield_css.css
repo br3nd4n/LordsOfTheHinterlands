@@ -1,8 +1,5 @@
 
-
-
-
-/* Battlefield style  */
+																/* Battlefield style  */
 
 
 #battlefield_token : {
@@ -66,7 +63,7 @@
 
 			background-color: #000000;
 			background-image: url(   )  ;	
-			weidth: ;
+			weidth: ;                          
 			height: ;
 			margin-left:   ;
 			margin-right:   ;
@@ -86,42 +83,12 @@
 }
 
 
+
+
+
+
 											/*  Hero's  */
 
-
-#Basehero1_Smitty_catalog_image : {
-	
-				background-image: url(   )  ;
-				width: px;
-    			height: px;
-    			margin-left: auto;
-    			margin-right: auto;
-
-
-
-}
-
-#Basehero1_Smitty_rack_image : {
-
-					background-image: url(   )  ;
-				width: px;
-    			height: px;
-    			margin-left: auto;
-    			margin-right: auto;
-
-
-}
-
-#Basehero1_Smitty_staging_image : {
-	
-				background-image: url(   )  ;
-				width: px;
-    			height: px;
-    			margin-left: auto;
-    			margin-right: auto;
-
-
-}
 
 #Basehero1_Smitty_battle_image : {
 
@@ -135,20 +102,37 @@
 }
 
 
+#Basehero2_Nuepuw_battle_image : {
 
-
-										/* Weapon's and equipment  */
-
-
-#baseaxe : {
-	
-
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
 	
 }
 
 
 
+											/*other creatures */
+
+#fighter1_Bruiseers_battle_image : {
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
 
 
+#fighter2_Alphas_battle_image :{
 
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
 
+}
