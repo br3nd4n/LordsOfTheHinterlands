@@ -1,0 +1,146 @@
+										/* staging style */
+
+#background{
+
+
+}
+
+
+#hero_menu {
+
+
+}
+
+#equipment_menu {
+
+
+}
+
+
+#creature_menu {
+
+
+}
+
+#staging_platforms {
+
+
+}
+
+
+#staging_platform_text{
+
+	/*  tells you what you added to creature */
+
+
+}
+
+
+#open_door_button {
+
+     /* press when creature is ready to go to battlefield  */
+
+}
+
+
+											/* Staging heroes*/
+
+#Basehero1_Smitty_staging_image : {
+	
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
+
+
+#Basehero2_Nuepuw_staging_image : {
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+	
+}
+
+
+											/*other creatures */
+
+#fighter1_Bruiseers_staging_image : {
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
+
+#fighter2_Alphas_staging_image :{
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
+
+
+
+											/* Staging Weapons and equipment */
+
+
+#base_axe_staging_image : {
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
+
+#base_sword_staging_image :{
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
+
+#leather_shield_staging_image :{
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
+
+#wood_shield_staging_image :{
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
+
+
+#ironjunk_staging_image :{
+
+				background-image: url(   )  ;
+				width: px;
+    			height: px;
+    			margin-left: auto;
+    			margin-right: auto;
+
+}
