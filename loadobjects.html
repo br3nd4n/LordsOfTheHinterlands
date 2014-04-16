@@ -49,7 +49,15 @@
 				var mouse = new THREE.Vector2();
 var objects = [], plane;
 
-			var gridX=[],gridY=[];
+			//var gridX=[],gridY=[];
+//var row=new Array(40);
+var grid = new Array(40);
+for(var i=0;i<grid.length;i++){
+	grid[i] = Array(18);
+}
+
+//			var testX=Math.floor(Math.random()*41),testY=Math.floor(Math.random()*19);
+			var testX=0,testY=0;
 
 			init();
 			animate();
@@ -59,7 +67,7 @@ var objects = [], plane;
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.z = 100;
 
 				// scene
@@ -79,26 +87,26 @@ var objects = [], plane;
 			loader.load( 'hexagon.obj', 'hexagon.mtl', function ( object ) {
 
 					//object.position.y = - 80;
-					object.scale = new THREE.Vector3(.5,.5,.5);
+					object.scale = new THREE.Vector3(1,1,1);
 					var x,y;
-					var offset=0.7;
+					var offset=0.5;
 					var toggle=0;
 
 
-				for(y=0;y<19;y++){
+				for(y=0;y<18;y++){
 
 					if (toggle==0){toggle=1;}else{toggle=0;}
 							
-					for(x=0;x<41;x++){
+					for(x=0;x<40;x++){
 						
 							var c = object.clone();		
-							var q = 1.5*x- 20 ;
+							var q = x- 20 ;
 							if (toggle==1){q += offset;}
 							c.position.x = q;
-							c.position.z= 0.8*y-5;
-							
-							gridX[x]=q;
-							gridY[y]=0.8*y-5;
+							c.position.z= y-9;
+							c.position.y=0;
+							grid[x][y]=[c.position.x,c.position.z];
+							//gridY[y]=c.position.z;
 							
 							scene.add( c  );
 							//console.log(scene.children);
@@ -113,8 +121,8 @@ var objects = [], plane;
 
 					//object.position.y = - 80;
 					object.scale = new THREE.Vector3(1,1,1);
-					object.position.x = gridX[0];
-					object.position.z= gridY[1];
+				//	object.position.x = gridX[0];
+				//	object.position.z= gridY[1];
 
 					scene.add( object );
 
@@ -124,8 +132,8 @@ var objects = [], plane;
 
 					//object.position.y = - 80;
 					object.scale = new THREE.Vector3(1,1,1);
-					object.position.x = gridX[0];
-					object.position.z= gridY[1];
+				//	object.position.x = gridX[0];
+				//	object.position.z= gridY[1];
 					
 					scene.add( object );
 
@@ -134,8 +142,8 @@ var objects = [], plane;
 
 					//object.position.y = - 80;
 					object.scale = new THREE.Vector3(1,1,1);
-					object.position.x = gridX[0];
-					object.position.z= gridY[1];
+				//	object.position.x = gridX[0];
+				//	object.position.z= gridY[1];
 					
 					scene.add( object );
 
@@ -144,10 +152,11 @@ var objects = [], plane;
 				loader.load( 'bruiser.obj', 'bruiser.mtl', function ( object ) {
 
 					//object.position.y = - 80;
-					object.scale = new THREE.Vector3(2,2,2);
-					object.position.x = gridX[0];
-					object.position.z= gridY[1];
-					bruiser = object;
+					object.scale = new THREE.Vector3(1,1,1);
+					//object.position.x = gridX[0];
+					//object.position.z= gridY[1];
+					object.position.y=0;
+					//bruiser = object;
 					scene.add( object );
 
 				} );
@@ -155,9 +164,9 @@ var objects = [], plane;
 
 					//object.position.y = - 80;
 					object.scale = new THREE.Vector3(1,1,1);
-					object.position.x = gridX[0];
-					object.position.z= gridY[1];
-					
+				//	object.position.x = gridX[0];
+				//	object.position.z= gridY[1];
+					bruiser=object;
 					scene.add( object );
 
 				} );
@@ -307,28 +316,29 @@ var objects = [], plane;
 			}
 
 
-var testX=Math.floor(Math.random()*41),testY=Math.floor(Math.random()*19);
 
 setInterval(function(){
 
 			try {
 				
-				bruiser.position.x = gridX[testX];//Math.floor(Math.random()*41)];
+				bruiser.position.x = grid[testX][testY][0];//Math.floor(Math.random()*41)];
 				testX++;
 				if (testX==40){
 					testX=0;
 					testY++;
 					if (testY==18){testY=0}
-					bruiser.position.z = gridY[testY];//Math.floor(Math.random()*19)];		
+					bruiser.position.z = grid[testX][testY][1];//Math.floor(Math.random()*19)];		
 				}
 				
-			}catch(ex){}
+			}catch(ex){
+				console.log(ex);
+			}
 
 
 
 	
 
-	},100);
+	},5);
 
 			function animate() {
 
@@ -364,8 +374,18 @@ scene.children[8].rotation.y-=.026;
 			//camera.position.x = scene.position.x + radius * Math.cos(  timr);         
 			//camera.position.z = scene.position.z + radius * Math.sin( timr );
 	
-				camera.lookAt( scene.position );
+				try{
+camera.lookAt( bruiser.position );
 
+
+
+				} catch(ex){
+
+camera.lookAt( scene.position );
+
+
+				}
+				
 				renderer.render( scene, camera );
 
 			}
