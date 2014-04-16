@@ -39,6 +39,7 @@
 			var timr=0;
 
 			var mouseX = 0, mouseY = 0;
+					var bruiser;
 
 			var windowHalfX = window.innerWidth / 2;
 			var windowHalfY = window.innerHeight / 2;
@@ -48,7 +49,7 @@
 				var mouse = new THREE.Vector2();
 var objects = [], plane;
 
-			
+			var gridX=[],gridY=[];
 
 			init();
 			animate();
@@ -66,52 +67,16 @@ var objects = [], plane;
 				scene = new THREE.Scene();
 				projector = new THREE.Projector();
 
-				var ambient = new THREE.AmbientLight( 0x444444 );
+				var ambient = new THREE.AmbientLight( 0xffffff );
 				scene.add( ambient );
 
-				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+				var directionalLight = new THREE.DirectionalLight( 0xffffff );
 				directionalLight.position.set( 0, 0, 1 ).normalize();
 				scene.add( directionalLight );
-				// model
-
+				
 				var loader = new THREE.OBJMTLLoader();
-				loader.load( 'axe.obj', 'axe.mtl', function ( object ) {
 
-					//object.position.y = - 80;
-					object.scale = new THREE.Vector3(10,10,10);
-					scene.add( object );
-
-				} );
-				loader.load( 'shield.obj', 'shield.mtl', function ( object ) {
-
-					//object.position.y = - 80;
-					object.scale = new THREE.Vector3(10,10,10);
-					scene.add( object );
-
-				} );
-				loader.load( 'warrior.obj', 'warrior.mtl', function ( object ) {
-
-					//object.position.y = - 80;
-					object.scale = new THREE.Vector3(10,10,10);
-					scene.add( object );
-
-				} );
-
-loader.load( 'bruiser.obj', 'bruiser.mtl', function ( object ) {
-
-					//object.position.y = - 80;
-					object.scale = new THREE.Vector3(10,10,10);
-					scene.add( object );
-
-				} );
-loader.load( 'WIZZARD.obj', 'WIZZARD.mtl', function ( object ) {
-
-					//object.position.y = - 80;
-					object.scale = new THREE.Vector3(10,10,10);
-					scene.add( object );
-
-				} );
-				loader.load( 'hexagon.obj', 'hexagon.mtl', function ( object ) {
+			loader.load( 'hexagon.obj', 'hexagon.mtl', function ( object ) {
 
 					//object.position.y = - 80;
 					object.scale = new THREE.Vector3(.5,.5,.5);
@@ -120,10 +85,9 @@ loader.load( 'WIZZARD.obj', 'WIZZARD.mtl', function ( object ) {
 					var toggle=0;
 
 
+				for(y=0;y<19;y++){
 
-						for(y=0;y<19;y++){
-
-						if (toggle==0){toggle=1;}else{toggle=0;}
+					if (toggle==0){toggle=1;}else{toggle=0;}
 							
 					for(x=0;x<41;x++){
 						
@@ -132,6 +96,10 @@ loader.load( 'WIZZARD.obj', 'WIZZARD.mtl', function ( object ) {
 							if (toggle==1){q += offset;}
 							c.position.x = q;
 							c.position.z= 0.8*y-5;
+							
+							gridX[x]=q;
+							gridY[y]=0.8*y-5;
+							
 							scene.add( c  );
 							//console.log(scene.children);
 
@@ -140,9 +108,68 @@ loader.load( 'WIZZARD.obj', 'WIZZARD.mtl', function ( object ) {
 
 					}
 
+
+				loader.load( 'axe.obj', 'axe.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(1,1,1);
+					object.position.x = gridX[0];
+					object.position.z= gridY[1];
+
+					scene.add( object );
+
+
+				} );
+				loader.load( 'shield.obj', 'shield.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(1,1,1);
+					object.position.x = gridX[0];
+					object.position.z= gridY[1];
 					
+					scene.add( object );
+
+				} );
+				loader.load( 'warrior.obj', 'warrior.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(1,1,1);
+					object.position.x = gridX[0];
+					object.position.z= gridY[1];
+					
+					scene.add( object );
+
 				} );
 
+				loader.load( 'bruiser.obj', 'bruiser.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(2,2,2);
+					object.position.x = gridX[0];
+					object.position.z= gridY[1];
+					bruiser = object;
+					scene.add( object );
+
+				} );
+				loader.load( 'WIZZARD.obj', 'WIZZARD.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(1,1,1);
+					object.position.x = gridX[0];
+					object.position.z= gridY[1];
+					
+					scene.add( object );
+
+				} );
+
+
+
+
+
+
+				} );
+
+				// model
 
 				//
 
@@ -280,7 +307,28 @@ loader.load( 'WIZZARD.obj', 'WIZZARD.mtl', function ( object ) {
 			}
 
 
+var testX=Math.floor(Math.random()*41),testY=Math.floor(Math.random()*19);
 
+setInterval(function(){
+
+			try {
+				
+				bruiser.position.x = gridX[testX];//Math.floor(Math.random()*41)];
+				testX++;
+				if (testX==40){
+					testX=0;
+					testY++;
+					if (testY==18){testY=0}
+					bruiser.position.z = gridY[testY];//Math.floor(Math.random()*19)];		
+				}
+				
+			}catch(ex){}
+
+
+
+	
+
+	},100);
 
 			function animate() {
 
@@ -307,8 +355,8 @@ scene.children[8].rotation.y-=.026;
 //THREE.Vector3 {x: -7.821729849617995, y: 177.00545779576194, z: 100, constructor: function, set: function…}
 			//	var radius = 10;
 				camera.position.z=50;
-				camera.position.y=60;
-			//	camera.position.y -=1; //=-2.821729849617995 ;//+= ( mouseX - camera.position.x ) * .05;
+					camera.position.y=30;
+			//	camera.position.y -=0.5; //=-2.821729849617995 ;//+= ( mouseX - camera.position.x ) * .05;
 			//	if(camera.position.y<5){camera.position.y=60;	}
 //				camera.position.y =60.00545779576194;//+= ( - mouseY - camera.position.y ) * .05;
 			//	camera.rotation.x += 0.1;
