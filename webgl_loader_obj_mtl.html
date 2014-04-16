@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - loaders - OBJ MTL loader</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+	</head>
+
+	<body>
+		<script src="js/three.js"></script>
+		<script src="js/MTLLoader.js"></script>
+		<script src="js/OBJMTLLoader.js"></script>
+
+
+		<script>
+
+			var container, stats;
+
+			var camera, scene, renderer;
+			var timr=0;
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+			var projector;
+			var offset = new THREE.Vector3(),
+			INTERSECTED, SELECTED;
+				var mouse = new THREE.Vector2();
+var objects = [], plane;
+
+			
+
+			init();
+			animate();
+
+
+			function init() {
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 100;
+
+				// scene
+
+				scene = new THREE.Scene();
+				projector = new THREE.Projector();
+
+				var ambient = new THREE.AmbientLight( 0x444444 );
+				scene.add( ambient );
+
+				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+				directionalLight.position.set( 0, 0, 1 ).normalize();
+				scene.add( directionalLight );
+				// model
+
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'axe.obj', 'axe.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(10,10,10);
+					scene.add( object );
+
+				} );
+				loader.load( 'shield.obj', 'shield.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(10,10,10);
+					scene.add( object );
+
+				} );
+				loader.load( 'warrior.obj', 'warrior.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(10,10,10);
+					scene.add( object );
+
+				} );
+
+loader.load( 'bruiser.obj', 'bruiser.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(10,10,10);
+					scene.add( object );
+
+				} );
+loader.load( 'WIZZARD.obj', 'WIZZARD.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(10,10,10);
+					scene.add( object );
+
+				} );
+				loader.load( 'hexagon.obj', 'hexagon.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(.5,.5,.5);
+					var x,y;
+					var offset=0.7;
+					var toggle=0;
+
+
+
+						for(y=0;y<19;y++){
+
+						if (toggle==0){toggle=1;}else{toggle=0;}
+							
+					for(x=0;x<41;x++){
+						
+							var c = object.clone();		
+							var q = 1.5*x- 20 ;
+							if (toggle==1){q += offset;}
+							c.position.x = q;
+							c.position.z= 0.8*y-5;
+							scene.add( c  );
+							//console.log(scene.children);
+
+						}
+
+
+					}
+
+
+				} );
+
+
+				//
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );				
+
+				container.appendChild( renderer.domElement );
+
+				renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				renderer.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function onDocumentMouseMove( event ) {
+
+
+				event.preventDefault();
+
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+				//
+
+				var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
+				projector.unprojectVector( vector, camera );
+
+				var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+
+				if ( SELECTED ) {
+
+					var intersects = raycaster.intersectObject( plane );
+					SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+					return;
+
+				}
+
+
+				var intersects = raycaster.intersectObjects( scene.children );
+
+				if ( intersects.length > 0 ) {
+
+					if ( INTERSECTED != intersects[ 0 ].object ) {
+
+						if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+
+						INTERSECTED = intersects[ 0 ].object;
+						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+
+						plane.position.copy( INTERSECTED.position );
+						plane.lookAt( camera.position );
+
+					}
+
+					container.style.cursor = 'pointer';
+
+				} else {
+
+					if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+
+					INTERSECTED = null;
+
+					container.style.cursor = 'auto';
+
+				}
+
+
+}
+
+			function onDocumentMouseDown( event ) {
+
+				event.preventDefault();
+
+				var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
+				projector.unprojectVector( vector, camera );
+
+				var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+				var intersects = raycaster.intersectObjects( scene.children );
+
+				if ( intersects.length > 0 ) {
+
+					controls.enabled = false;
+
+					SELECTED = intersects[ 0 ].object;
+
+					var intersects = raycaster.intersectObject( plane );
+					offset.copy( intersects[ 0 ].point ).sub( plane.position );
+
+					container.style.cursor = 'move';
+
+				}
+
+			}
+
+
+			//
+
+
+
+
+			function onDocumentMouseUp( event ) {
+
+				event.preventDefault();
+
+			//	controls.enabled = true;
+
+				if ( INTERSECTED ) {
+
+					plane.position.copy( INTERSECTED.position );
+
+					SELECTED = null;
+
+				}
+
+				container.style.cursor = 'auto';
+
+			}
+
+
+
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+
+			}
+
+			function render() {
+
+//				scene.children[3].rotation.x+=.01;
+
+/*
+scene.children[3].rotation.y-=.021;
+scene.children[4].rotation.y-=.022;
+scene.children[5].rotation.y-=.023;
+scene.children[6].rotation.y-=.024;
+scene.children[7].rotation.y-=.025;
+scene.children[8].rotation.y-=.026;
+*/
+//scene.children[3].rotation.z+=.03;
+
+
+//THREE.Vector3 {x: -7.821729849617995, y: 177.00545779576194, z: 100, constructor: function, set: function…}
+			//	var radius = 10;
+				camera.position.z=50;
+				camera.position.y=60;
+			//	camera.position.y -=1; //=-2.821729849617995 ;//+= ( mouseX - camera.position.x ) * .05;
+			//	if(camera.position.y<5){camera.position.y=60;	}
+//				camera.position.y =60.00545779576194;//+= ( - mouseY - camera.position.y ) * .05;
+			//	camera.rotation.x += 0.1;
+			timr+=.1;
+			//camera.position.x = scene.position.x + radius * Math.cos(  timr);         
+			//camera.position.z = scene.position.z + radius * Math.sin( timr );
+	
+				camera.lookAt( scene.position );
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

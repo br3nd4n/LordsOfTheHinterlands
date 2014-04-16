@@ -1,0 +1,22 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Brown_Wool
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.215843 0.128000 0.067765
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd mctest-RGB.png
+
+newmtl Light_Gray_Wool
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.394039 0.411608 0.411608
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd mctest-RGB.png

@@ -1,0 +1,32 @@
+<html>
+<head>
+     <script type="text/javascript" src="http://lib.ivank.net/ivank.js"></script>
+     <script type="text/javascript">
+          var stage, s;
+          
+          function Start()
+          {
+               var request = new XMLHttpRequest();
+               request.open("GET", "werewolf.json");
+               request.onload = loaded;  request.send();
+          }
+          function loaded(e) 
+          {
+               stage = new Stage("c");
+               s = new Sprite();  stage.addChild(s);
+               
+               s.x = stage.stageWidth/2;  s.y = 1000;  s.z = 1500;
+               s.scaleX = s.scaleY = s.scaleZ = 10;  s.scaleY *= -1;
+               
+               var m = JSON.parse(e.target.responseText);
+               s.graphics.beginBitmapFill(new BitmapData("werewolf.jpg"));
+               s.graphics.drawTriangles3D(m.vertices, m.indices, m.uvt);
+               stage.addEventListener(Event.ENTER_FRAME, onEF);
+          }
+          function onEF(e) { s.rotationY += 0.01*(stage.mouseX - s.x); }
+     </script>
+</head>
+<body onload="Start();"><canvas id="c"></canvas></body>
+</html>
+
+

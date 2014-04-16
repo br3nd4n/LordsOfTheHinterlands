@@ -1,0 +1,32 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl Purple_Wool.001
+Ns 90.196078
+Ka 0.000000 0.000000 0.000000
+Kd 0.257004 0.098385 0.397554
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd mctest-RGB.png
+
+newmtl White_Wool.001
+Ns 90.196078
+Ka 0.000000 0.000000 0.000000
+Kd 0.443734 0.443734 0.443734
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd mctest-RGB.png
+
+newmtl Yellow_Wool.001
+Ns 90.196078
+Ka 0.000000 0.000000 0.000000
+Kd 0.387514 0.361412 0.056219
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd mctest-RGB.png
