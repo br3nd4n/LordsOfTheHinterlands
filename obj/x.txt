@@ -1,0 +1,20 @@
+ Volume in drive C is Acer
+ Volume Serial Number is 6E4B-295F
+
+ Directory of C:\Users\Brendan\Documents\GitHub\LordsOfTheHinterlands\obj
+
+04/16/2014  07:48 AM             2,931 axe.obj
+04/16/2014  09:12 AM             6,906 bruiser.obj
+04/16/2014  07:48 AM           181,494 cart2.obj
+04/16/2014  09:12 AM            31,794 hexagon.obj
+04/17/2014  01:51 AM         1,294,352 hummodel1.obj
+04/17/2014  01:51 AM         1,487,415 hummodel2.obj
+04/17/2014  01:04 AM         1,403,743 Nuepuw3.obj
+04/16/2014  07:48 AM             4,580 shield.obj
+04/17/2014  01:04 AM         1,460,938 smitty2.obj
+04/16/2014  06:46 AM             4,346 warrior.obj
+04/16/2014  09:12 AM            18,292 WIZZARD.obj
+04/16/2014  09:12 AM            31,897 woodcitydoor.obj
+04/16/2014  09:12 AM            41,830 woodcitywalls.obj
+              13 File(s)      5,970,518 bytes
+               0 Dir(s)  603,219,210,240 bytes free

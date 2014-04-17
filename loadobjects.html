@@ -26,6 +26,8 @@
 	</head>
 
 	<body>
+	<script src="js/jquery-1.11.0.min.js"></script>
+
 		<script src="js/three.js"></script>
 		<script src="js/MTLLoader.js"></script>
 		<script src="js/OBJMTLLoader.js"></script>
@@ -44,21 +46,25 @@
 			var windowHalfX = window.innerWidth / 2;
 			var windowHalfY = window.innerHeight / 2;
 			var projector;
-			var offset = new THREE.Vector3(),
-			INTERSECTED, SELECTED;
+			var offset = new THREE.Vector3(),INTERSECTED, SELECTED;
 			var mouse = new THREE.Vector2();
 			var objects = [], plane;
 			var animObjs=[];
 
-			//var gridX=[],gridY=[];
-//var row=new Array(40);
-var grid = new Array(40);
-for(var i=0;i<grid.length;i++){
-	grid[i] = Array(18);
-}
+			var grid = new Array(40);
+			for(var i=0;i<grid.length;i++){
+				grid[i] = Array(18);
+			}
 
-//			var testX=Math.floor(Math.random()*41),testY=Math.floor(Math.random()*19);
-			var testX=0,testY=0;
+			var models;
+
+				/*
+			  var items = [];
+			  $.each( data, function( key, val ) {
+			    items.push( "<li id='" + key + "'>" + val + "</li>" );
+			  });
+*/
+
 
 			init();
 			animate();
@@ -89,7 +95,7 @@ for(var i=0;i<grid.length;i++){
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.z = 100;
 
 				// scene
@@ -106,7 +112,57 @@ for(var i=0;i<grid.length;i++){
 				
 				var loader = new THREE.OBJMTLLoader();
 
-			loader.load( 'hexagon.obj', 'hexagon.mtl', function ( object ) {
+
+
+
+			$.getJSON( "models.json", function( data ) {
+				loader.load( 'obj/hexagon.obj', 'obj/hexagon.mtl', function ( object ) {
+					object.scale = new THREE.Vector3(1,1,1);
+					var x,y;
+					var offset=0.5;
+					var toggle=0;
+
+
+					for(y=0;y<18;y++){
+
+						if (toggle==0){toggle=1;}else{toggle=0;}
+								
+						for(x=0;x<40;x++){
+								
+							var c = object.clone();		
+							var q = x- 20 ;
+							if (toggle==1){q += offset;}
+							c.position.x = q;
+							c.position.z= y-9;
+							c.position.y=0;
+							grid[x][y]=[c.position.x,c.position.z];
+							scene.add( c  );
+						}
+					}
+				});
+
+				data.models.forEach(
+					function(entry){
+						loader.load( 'obj/' + entry[0], 'obj/' + entry[1], 
+							function ( object ) {
+								object.scale = new THREE.Vector3(entry[2][0],entry[2][1],entry[2][2]);
+								object.myx = Math.floor(Math.random()*41);
+								object.myy = Math.floor(Math.random()*18);
+								animObjs.push(object);
+								scene.add( object );
+							} 
+						);
+					}
+				);
+			});
+
+
+
+/*
+
+
+
+			loader.load( 'obj/hexagon.obj', 'obj/hexagon.mtl', function ( object ) {
 
 					//object.position.y = - 80;
 					object.scale = new THREE.Vector3(1,1,1);
@@ -128,84 +184,51 @@ for(var i=0;i<grid.length;i++){
 							c.position.z= y-9;
 							c.position.y=0;
 							grid[x][y]=[c.position.x,c.position.z];
-							//gridY[y]=c.position.z;
-							
 							scene.add( c  );
-							//console.log(scene.children);
-
 						}
-
-
 					}
 
 
-				loader.load( 'axe.obj', 'axe.mtl', function ( object ) {
-
-					//object.position.y = - 80;
+				loader.load( 'obj/axe.obj', 'obj/axe.mtl', function ( object ) {
 					object.scale = new THREE.Vector3(1,1,1);
-				//	object.position.x = gridX[0];
-				//	object.position.z= gridY[1];
 					object.myx = 27;
 					object.myy = 16;
 					animObjs.push(object);
 					scene.add( object );
-
-
 				} );
-				loader.load( 'shield.obj', 'shield.mtl', function ( object ) {
 
-					//object.position.y = - 80;
+				loader.load( 'obj/shield.obj', 'obj/shield.mtl', function ( object ) {
 					object.scale = new THREE.Vector3(1,1,1);
-				//	object.position.x = gridX[0];
-				//	object.position.z= gridY[1];
 					object.myx = 10;
 					object.myy = 2;
 					animObjs.push(object);
 					scene.add( object );
-
 				} );
-				loader.load( 'warrior.obj', 'warrior.mtl', function ( object ) {
 
-					//object.position.y = - 80;
+				loader.load( 'obj/warrior.obj', 'obj/warrior.mtl', function ( object ) {
 					object.scale = new THREE.Vector3(1,1,1);
-				//	object.position.x = gridX[0];
-				//	object.position.z= gridY[1];
 					object.myx = 15;
 					object.myy = 8;
 					animObjs.push(object);
-
 					scene.add( object );
-
 				} );
 
-				loader.load( 'bruiser.obj', 'bruiser.mtl', function ( object ) {
-
-					//object.position.y = - 80;
+				loader.load( 'obj/bruiser.obj', 'obj/bruiser.mtl', function ( object ) {
 					object.scale = new THREE.Vector3(1,1,1);
-					//object.position.x = gridX[0];
-					//object.position.z= gridY[1];
 					object.position.y=0;
-					//bruiser = object;
 					object.myx = 30;
 					object.myy = 16;
 					animObjs.push(object);
-
 					scene.add( object );
-
 				} );
-				loader.load( 'obj/smitty2.obj', 'obj/smitty2.mtl', function ( object ) {
 
-					//object.position.y = - 80;
+				loader.load( 'obj/smitty2.obj', 'obj/smitty2.mtl', function ( object ) {
 					object.scale = new THREE.Vector3(.3,.3,.3);
-				//	object.position.x = gridX[0];
-				//	object.position.z= gridY[1];
 					bruiser=object;
 					object.myx = 35;
 					object.myy = 5;
 					animObjs.push(object);
-
 					scene.add( object );
-
 				} );
 
 
@@ -214,6 +237,10 @@ for(var i=0;i<grid.length;i++){
 
 
 				} );
+*/
+
+
+
 
 				// model
 
@@ -356,7 +383,7 @@ for(var i=0;i<grid.length;i++){
 
 
 
-setInterval(function(){
+		setInterval(function(){
 
 
 		animObjs.forEach(function(entry){
@@ -375,7 +402,7 @@ setInterval(function(){
 */
 				
 			}catch(ex){
-				console.log(ex);
+		//		console.log(ex);
 			}
 
 		});
@@ -436,7 +463,7 @@ scene.children[8].rotation.y-=.026;
 			//camera.position.z = scene.position.z + radius * Math.sin( timr );
 
 
-/*	
+	
 				try{
 camera.lookAt( bruiser.position );
 
@@ -448,8 +475,8 @@ camera.lookAt( scene.position );
 
 
 				}
-*/
-camera.lookAt( scene.position );
+
+//camera.lookAt( scene.position );
 
 				renderer.render( scene, camera );
 
