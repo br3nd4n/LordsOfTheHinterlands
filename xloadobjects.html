@@ -58,6 +58,13 @@
 
 			var models;
 
+				/*
+			  var items = [];
+			  $.each( data, function( key, val ) {
+			    items.push( "<li id='" + key + "'>" + val + "</li>" );
+			  });
+*/
+
 
 			init();
 			animate();
@@ -66,40 +73,51 @@
 
 
 			function click(object) {
-//				if(Math.floor(Math.random()*2)>0){
-
-				
+				if(Math.floor(Math.random()*2)>0){
 					object.myx +=1;
-					if(object.myx>=40){
+					if(object.myx==40){
 						object.myx=0;
-						object.myy+=1;
-						if(object.myy>=18){
-							///object.myy=0;
-							object.myx=Math.floor(Math.random()*40);
-							object.myy=Math.floor(Math.random()*18);
-							
+						object.myy++;
+						if(myy==18){
+							myy=0;
 						}
 
 					}
 					object.position.x = grid[object.myx][object.myy][0];
 					object.position.z = grid[object.myx][object.myy][1];
-//				}
+				}
 
-
-
-
-/*
-					var xx=Math.floor(Math.random()*40),yy=Math.floor(Math.random()*18);
-					object.position.x = grid[xx][yy][0];
-					object.position.z = grid[xx][yy][1];
-*/
 			}
 
-			function gengrid( object ) {
-					object.scale = new THREE.Vector3(.1,.1,.1);
-					object.rotation.x = 180;
-					object.rotation.y = 180;
-					object.rotation.z = 180;
+
+
+			function init() {
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 100;
+
+				// scene
+
+				scene = new THREE.Scene();
+				projector = new THREE.Projector();
+
+				var ambient = new THREE.AmbientLight( 0xffffff );
+				scene.add( ambient );
+
+				var directionalLight = new THREE.DirectionalLight( 0xffffff );
+				directionalLight.position.set( 0, 0, 1 ).normalize();
+				scene.add( directionalLight );
+				
+				var loader = new THREE.OBJMTLLoader();
+
+
+
+
+			$.getJSON( "models.json", function( data ) {
+				loader.load( 'obj/hexagon.obj', 'obj/hexagon.mtl', function ( object ) {
+					object.scale = new THREE.Vector3(1,1,1);
 					var x,y;
 					var offset=0.5;
 					var toggle=0;
@@ -121,34 +139,7 @@
 							scene.add( c  );
 						}
 					}
-				}
-
-			function init() {
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
-
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.z = 100;
-
-				// scene
-
-				scene = new THREE.Scene();
-				projector = new THREE.Projector();
-
-				var ambient = new THREE.AmbientLight( 0xffffff );
-				scene.add( ambient );
-
-				var directionalLight = new THREE.DirectionalLight( 0xffffff );
-				directionalLight.position.set( 0, 0, 1 ).normalize();
-				scene.add( directionalLight );
-				
-				var loader = new THREE.OBJMTLLoader();
-
-
-
-
-			$.getJSON( "models.json", function( data ) {
-				loader.load( 'obj/marbleHex.obj', 'obj/marbleHex.mtl', gengrid);
+				});
 
 				data.models.forEach(
 					function(entry){
@@ -392,17 +383,7 @@
 
 
 
-		var curChild=3;
 		setInterval(function(){
-/*
-			if(curChild>scene.children.length){curChild=3}
-			curChild++;
-
-
-			try{
-			camera.lookAt( scene.children[curChild].position );
-			}catch(ex){}
-*/
 
 
 		animObjs.forEach(function(entry){
@@ -445,7 +426,7 @@
 
 	
 
-	},50);
+	},200);
 
 			function animate() {
 
@@ -471,7 +452,7 @@ scene.children[8].rotation.y-=.026;
 
 //THREE.Vector3 {x: -7.821729849617995, y: 177.00545779576194, z: 100, constructor: function, set: function…}
 			//	var radius = 10;
-				camera.position.z=20;
+				camera.position.z=50;
 					camera.position.y=20;
 			//	camera.position.y -=0.5; //=-2.821729849617995 ;//+= ( mouseX - camera.position.x ) * .05;
 			//	if(camera.position.y<5){camera.position.y=60;	}
@@ -496,10 +477,7 @@ camera.lookAt( scene.position );
 				}
 */
 camera.lookAt( scene.position );
-/*try{
-camera.lookAt( scene.children[4].position );
-}catch(ex){}
-*/
+
 				renderer.render( scene, camera );
 
 			}
