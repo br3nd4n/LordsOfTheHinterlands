@@ -31,13 +31,16 @@
 		<script src="js/three.js"></script>
 		<script src="js/MTLLoader.js"></script>
 		<script src="js/OBJMTLLoader.js"></script>
+		<script src="js/OrbitControls.js"></script>
+
+
 
 
 		<script>
 
 			var container, stats;
 
-			var camera, scene, renderer;
+			var camera, scene, renderer,controls;
 			var timr=0;
 
 			var mouseX = 0, mouseY = 0;
@@ -98,8 +101,8 @@
 			function gengrid( object ) {
 					object.scale = new THREE.Vector3(.1,.1,.1);
 					object.rotation.x = 180;
-					object.rotation.y = 180;
-					object.rotation.z = 180;
+					//object.rotation.y = 180;
+					//object.rotation.z = 180;
 					var x,y;
 					var offset=0.5;
 					var toggle=0;
@@ -130,15 +133,18 @@
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.z = 100;
 
+				controls = new THREE.OrbitControls( camera );
+				controls.addEventListener( 'change', render );
+
 				// scene
 
 				scene = new THREE.Scene();
 				projector = new THREE.Projector();
 
-				var ambient = new THREE.AmbientLight( 0xffffff );
-				scene.add( ambient );
+			//	var ambient = new THREE.AmbientLight( 0xffffff );
+			//	scene.add( ambient );
 
-				var directionalLight = new THREE.DirectionalLight( 0xffffff );
+				var directionalLight = new THREE.DirectionalLight( 0xbbbbbb );
 				directionalLight.position.set( 0, 0, 1 ).normalize();
 				scene.add( directionalLight );
 				
@@ -445,7 +451,7 @@
 
 	
 
-	},50);
+	},500);
 
 			function animate() {
 
