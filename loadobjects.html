@@ -58,13 +58,6 @@
 
 			var models;
 
-				/*
-			  var items = [];
-			  $.each( data, function( key, val ) {
-			    items.push( "<li id='" + key + "'>" + val + "</li>" );
-			  });
-*/
-
 
 			init();
 			animate();
@@ -89,7 +82,30 @@
 
 			}
 
+			function gengrid( object ) {
+					object.scale = new THREE.Vector3(.1,.1,.1);
+					var x,y;
+					var offset=0.5;
+					var toggle=0;
 
+
+					for(y=0;y<18;y++){
+
+						if (toggle==0){toggle=1;}else{toggle=0;}
+								
+						for(x=0;x<40;x++){
+								
+							var c = object.clone();		
+							var q = x- 20 ;
+							if (toggle==1){q += offset;}
+							c.position.x = q;
+							c.position.z= y-9;
+							c.position.y=0;
+							grid[x][y]=[c.position.x,c.position.z];
+							scene.add( c  );
+						}
+					}
+				}
 
 			function init() {
 				container = document.createElement( 'div' );
@@ -116,30 +132,7 @@
 
 
 			$.getJSON( "models.json", function( data ) {
-				loader.load( 'obj/hexagon.obj', 'obj/hexagon.mtl', function ( object ) {
-					object.scale = new THREE.Vector3(1,1,1);
-					var x,y;
-					var offset=0.5;
-					var toggle=0;
-
-
-					for(y=0;y<18;y++){
-
-						if (toggle==0){toggle=1;}else{toggle=0;}
-								
-						for(x=0;x<40;x++){
-								
-							var c = object.clone();		
-							var q = x- 20 ;
-							if (toggle==1){q += offset;}
-							c.position.x = q;
-							c.position.z= y-9;
-							c.position.y=0;
-							grid[x][y]=[c.position.x,c.position.z];
-							scene.add( c  );
-						}
-					}
-				});
+				loader.load( 'obj/marbleHex.obj', 'obj/marbleHex.mtl', gengrid);
 
 				data.models.forEach(
 					function(entry){
@@ -383,7 +376,16 @@
 
 
 
+		var curChild=3;
 		setInterval(function(){
+			if(curChild>scene.children.length){curChild=3}
+			curChild++;
+
+
+			try{
+			camera.lookAt( scene.children[curChild].position );
+			}catch(ex){}
+
 
 
 		animObjs.forEach(function(entry){
@@ -452,8 +454,8 @@ scene.children[8].rotation.y-=.026;
 
 //THREE.Vector3 {x: -7.821729849617995, y: 177.00545779576194, z: 100, constructor: function, set: function…}
 			//	var radius = 10;
-				camera.position.z=50;
-					camera.position.y=20;
+				camera.position.z=0;
+					camera.position.y=10;
 			//	camera.position.y -=0.5; //=-2.821729849617995 ;//+= ( mouseX - camera.position.x ) * .05;
 			//	if(camera.position.y<5){camera.position.y=60;	}
 //				camera.position.y =60.00545779576194;//+= ( - mouseY - camera.position.y ) * .05;
@@ -476,8 +478,11 @@ camera.lookAt( scene.position );
 
 				}
 */
-camera.lookAt( scene.position );
-
+//camera.lookAt( scene.position );
+/*try{
+camera.lookAt( scene.children[4].position );
+}catch(ex){}
+*/
 				renderer.render( scene, camera );
 
 			}
