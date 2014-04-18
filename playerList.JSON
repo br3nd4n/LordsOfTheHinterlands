@@ -1,0 +1,17 @@
+{
+	"players":[
+		
+		{
+			"playerId":0,
+			"playerTag":"MisterH",
+			"password":"slak"
+		},
+
+		{
+			"playerId":1,
+			"playerTag":"br3n",
+			"password":"slak"
+		}
+
+	]
+}

@@ -1,0 +1,73 @@
+{
+	"players":[
+		{
+			"playerId":0,
+			"playerTag":"playerA",
+			"buildings":[
+				{
+					"buildingId":0
+				},
+				{
+					"buildingId":1
+				}
+
+			],
+			"currentDeck":[
+				{
+					"cardId":0,
+					"count":1
+				},
+				{
+					"cardId":1,
+					"count":1
+				}
+			],
+			"currentActive":[
+				{
+					"cardId":0,
+					"position": [0,0]
+				},
+				{
+					"cardId":0,
+					"position": [1,0]
+				},
+			]
+		},
+
+		{
+			"playerId":1,
+			"playerTag":"playerB",
+			"buildings":[
+				{
+					"buildingId":0
+				},
+				{
+					"buildingId":1
+				}
+
+			],
+			"currentDeck":[
+				{
+					"cardId":0,
+					"count":1
+				},
+				{
+					"cardId":1,
+					"count":1
+				}
+			],
+			"currentActive":[
+				{
+					"cardId":0,
+					"position": [0,0]
+				},
+				{
+					"cardId":0,
+					"position": [1,0]
+				},
+			]
+		}
+		
+	]
+
+}
