@@ -1,0 +1,61 @@
+# Blender MTL File: 'smitty1.blend'
+# Material Count: 6
+
+newmtl DefaultSkin
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.422175 0.105948 0.051985
+Ks 0.150000 0.150000 0.150000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.003917 0.003917 0.003917
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/Michael/Desktop/blends/smity/textures/classicshoes_texture_diffuse.png
+
+newmtl Material.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.002064 0.002064 0.002064
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/Michael/Desktop/blends/smity/textures/male02_diffuse_black.png
+
+newmtl Material.002
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/Michael/Desktop/blends/smity/textures/brown_eye.png
+
+newmtl Material.003
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.058589 0.021492 0.009998
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/Michael/Desktop/blends/smity/textures/jeans_basic_diffuse.png
+
+newmtl Material.004
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.273907 0.240829 0.072452
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/Michael/Desktop/blends/smity/textures/tshirt_texture_white.png
