@@ -254,7 +254,7 @@
 
 
 
-
+/*
 			$.getJSON( "models.json", function( data ) {
 				loader.load( 'obj/marbleHex.obj', 'obj/marbleHex.mtl', gengrid);
 
@@ -273,12 +273,13 @@
 				);
 			});
 
+*/
 
 
 
-
-var socket = io.connect(location.hostname); 
-	var battle = new battle(socket);
+	var socket = io.connect(location.hostname); 
+	
+	var battle = new Battle(socket);
 
 	battle.events.on("init", function(){ 
 		console.log(battle.battleData)
@@ -309,6 +310,39 @@ var socket = io.connect(location.hostname);
 		}
 	
 	});
+
+
+
+
+
+			loader.load( 'obj/marbleHex.obj', 'obj/marbleHex.mtl', function ( object ) {
+
+					//object.position.y = - 80;
+					object.scale = new THREE.Vector3(.1,.1,.1);
+					object.rotation.x=180;
+					var x,y;
+					var offset=0.5;
+					var toggle=0;
+
+
+				for(y=0;y<18;y++){
+
+					if (toggle==0){toggle=1;}else{toggle=0;}
+							
+					for(x=0;x<40;x++){
+						
+							var c = object.clone();		
+							var q = x- 20 ;
+							if (toggle==1){q += offset;}
+							c.position.x = q;
+							c.position.z= y-9;
+							c.position.y=0;
+							grid[x][y]=[c.position.x,c.position.z];
+							scene.add( c  );
+						}
+					}
+				}
+				);
 
 
 

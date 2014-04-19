@@ -19,7 +19,11 @@ function Network(battle) {
 	this.io = battle.io;
 
 	var that = this
-	battle.on('newplayer', function(player){that.onNewPlayer(player) })
+	battle.on('newplayer', function(player){
+		console.log('test1');
+		console.log(player);
+
+		that.onNewPlayer(player) })
 }
 
 
@@ -27,7 +31,10 @@ Network.prototype.onNewPlayer = function(player){ //event registered with socket
 	//new connection!
 	//add ref to socket somewhere
 	//
-	var socket = player.socket
+	console.log('player');
+	console.log(player);
+	
+	var socket = player.socket;
 	this.socketList.push(socket);
 
 	var that = this;
