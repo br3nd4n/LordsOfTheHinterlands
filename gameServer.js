@@ -127,7 +127,7 @@ GameServer.prototype.newConnection = function(socket){
 	var player = new Player(this, socket);
 	this.playerList.push(player);
 	this.emit("newplayer", player);
-
+	this.netchan.registerObject(player);
 	var that = this;
 	socket.on('disconnect', function(socket){ that.clients--; });
 };

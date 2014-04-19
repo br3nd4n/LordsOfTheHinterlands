@@ -23,7 +23,9 @@ function Network(battle) {
 		console.log('test1');
 		console.log(player);
 
-		that.onNewPlayer(player) })
+		that.onNewPlayer(player); 
+	}
+	);
 }
 
 
@@ -41,22 +43,21 @@ Network.prototype.onNewPlayer = function(player){ //event registered with socket
 
 	//setup an event dispatch so we can directly fire events on specific object instances
 	player.on("network_objrpc", function(player, data){
-										var objid = data.objid;
+		var objid = data.objid;
 
-										if( objid >= that.objectList.length ){
-											console.log("bad object id call, objid:"+objid);
-											return;
-										}
+		if( objid >= that.objectList.length ){
+			console.log("bad object id call, objid:"+objid);
+			return;
+		}
 
-										var object = that.objectList[objid].obj
+		var object = that.objectList[objid].obj
 
-										if(object.objectRPC instanceof events.EventEmitter){
-											object.objectRPC.emit(data.eventname, player, data.eventdata);
-										} else {
-											console.log("no objectRPC on objid: "+objid)
-										}
-									})
-
+		if(object.objectRPC instanceof events.EventEmitter){
+			object.objectRPC.emit(data.eventname, player, data.eventdata);
+		} else {
+			console.log("no objectRPC on objid: "+objid)
+		}
+	})
 
 	fullUpdate = this.calcFullUpdate();
 	socket.emit("objectlist", fullUpdate);

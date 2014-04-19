@@ -11,8 +11,10 @@ var playerCount=0;
 function Player(world, socket){
 	this.socket = socket;
 	playerCount++;
-	this.name = "space derp " + playerCount;
-
+	this.name = "player derp " + playerCount;
+	this.x  =Math.floor(Math.random()*40);
+	this.y  =Math.floor(Math.random()*18);
+	this.modelid = 0; 
 	this.on("player_name_set", 
 		function(player, data){ 
 			if(data.name != undefined){
@@ -24,7 +26,7 @@ function Player(world, socket){
 }
 
 Player.prototype.getSyncProps = function(){
-	return ['name'];
+	return ['name','x','y','modelid'];
 }
 
 //shim into the event callback so we can insert the player message
@@ -33,6 +35,12 @@ Player.prototype.on = function(event, callback){
 	this.socket.on(event, function(data){
 		callback(that, data);
 	})
+}
+
+Player.prototype.positionChanged = function(data){
+	that.x =data['newx'];
+	that.y =data['newy'];
+	//that.emit();
 }
 
 Player.prototype.__proto__ = events.EventEmitter.prototype;
