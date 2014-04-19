@@ -1,14 +1,7 @@
 {
 	"models":[
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel1.obj","hummodel1.mtl",[0.1,0.1,0.1]],
-	["hummodel2.obj","hummodel2.mtl",[0.1,0.1,0.1]]
+	["nuepuw4.obj","nuepuw4.mtl",[0.25,0.25,0.25]],
+	["smitty3.obj","smitty3.mtl",[0.25,0.25,0.25]]
 	]
 
 

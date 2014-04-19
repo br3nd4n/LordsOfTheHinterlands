@@ -33,9 +33,7 @@ function GameServer(io) {
 
 	var userBattles=[];
 	db.all("select rowid,* from userBattles",function(err,row){
-console.log(row);
 		row.forEach(function (userBattle){
-			//var x=row;
 			userBattle.activeCards=undefined;
 			try{userBattle.activeCards=JSON.parse(userBattle.jsonActiveCards);}catch(ex){}
 
@@ -50,8 +48,6 @@ console.log(row);
 
 	var battles=[];
 	db.all("select rowid,* from battles",function(err,row){
-
-
 		row.forEach(function(battle){
 			battle.boardState=undefined;
 			try{battle.boardState=JSON.parse(battle.jsonBoardState);}catch(ex){}
@@ -108,8 +104,8 @@ console.log(row);
 
 
 	
-	setInterval( function(){that.slowUpdate()}, 300); //1 fps
-//	setInterval( function(){that.update()}, 100); //1 fps
+//	setInterval( function(){that.slowUpdate()}, 300); //1 fps
+	setInterval( function(){that.update()}, 1000); //1 fps
 
 	this.io.sockets.on('connection', function(socket){ 
 		console.log('test4');
@@ -149,12 +145,12 @@ GameServer.prototype.update = function(){
 	var sTimeDiff = timeDiff / 1000; //convert to seconds
 
 	//do fast item update like position due to heading
-	for (i=0; i< this.areaList.length; i++) {
+/*	for (i=0; i< this.areaList.length; i++) {
 		a = this.areaList[i];
 		a.update(sTimeDiff);
 	}
-
-	
+*/
+	console.log("update");
 	this.emit("update", sTimeDiff);
 	
 	//update our network channel

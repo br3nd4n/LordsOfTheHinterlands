@@ -2,7 +2,7 @@
 
 function Battle(socket){
 	this.socket = socket;
-	this.BattleData = {};// new Array(); //{};
+	this.BattleData = [];// new Array(); //{};
 	this.network = new Network(this);
 	this.events = new EventEmitter();
 	this.events.on("init", function(){ 
@@ -10,16 +10,18 @@ function Battle(socket){
 	});
 	
 	this.events.on("update", function(){ 
-		console.log("world update"); 
+//		console.log("world update"); 
+
+//		console.log(a,b,c);
+
 	});
 
 	var that = this;
 
 	this.events.on("init", function(){
-		console.log(this.battleData);
-		that=this;
+		that.BattleData.push(that);
 		for (obj in this.battleData){
-			 if ((this.battleData[obj].GameServerTime!==undefined)) {
+			 if ((this.BattleData[obj].GameServerTime!==undefined)) {
 				updateTime =  (new Date()).getTime() - lastUpdate;
 				lastUpdate = (new Date()).getTime();
 			}
@@ -28,10 +30,13 @@ function Battle(socket){
 
 	});
 
-	this.events.on("update", function(){ 
+	this.events.on("update", function(){
+//		console.log("world update2"); 
 
-		for (obj in that.battleData){
-				var xobj = that.battleData[obj];
+//		console.log(a,b,c);
+
+		for (obj in that.BattleData){
+				var xobj = that.BattleData[obj];
 				
 	 			if ((xobj.GameServerTime!==undefined))		{
 					updateTime =  Date.now() - lastUpdate;
