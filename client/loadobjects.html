@@ -161,7 +161,7 @@
 			}
 
 			var models;
-
+			var directionalLight;
 
 			init();
 			animate();
@@ -243,11 +243,11 @@
 				scene = new THREE.Scene();
 				projector = new THREE.Projector();
 
-			//	var ambient = new THREE.AmbientLight( 0xffffff );
-			//	scene.add( ambient );
+				var ambient = new THREE.AmbientLight( 0xffffff );
+				scene.add( ambient );
 
-				var directionalLight = new THREE.DirectionalLight( 0xbbbbbb );
-				directionalLight.position.set( 0, 0, 1 ).normalize();
+				 directionalLight = new THREE.DirectionalLight( 0xffffff );
+				directionalLight.position.set( 0, 0.5, 1 ).normalize();
 				scene.add( directionalLight );
 				
 				var loader = new THREE.OBJMTLLoader();
@@ -319,7 +319,10 @@
 
 					//object.position.y = - 80;
 					object.scale = new THREE.Vector3(.1,.1,.1);
-					object.rotation.x=180;
+					object.rotation.x=0;
+					object.rotation.y=0;
+					object.rotation.z=0;//Math.PI;
+					
 					var x,y;
 					var offset=0.5;
 					var toggle=0;
@@ -345,7 +348,7 @@
 
 
 
-				loader.load( 'obj/smitty2.obj', 'obj/smitty2.mtl', function ( object ) {
+				loader.load( 'obj/smitty3.obj', 'obj/smitty3.mtl', function ( object ) {
 					object.scale = new THREE.Vector3(.3,.3,.3);
 					bruiser=object;
 					object.myx = 10;
@@ -353,7 +356,7 @@
 					animObjs.push(object);
 					scene.add( object );
 				} );
-				loader.load( 'obj/Nuepuw3.obj', 'obj/Nuepuw3.mtl', function ( object ) {
+	/*			loader.load( 'obj/Nuepuw3.obj', 'obj/Nuepuw3.mtl', function ( object ) {
 					object.scale = new THREE.Vector3(.6,.6,.6);
 					bruiser=object;
 					object.myx = 35;
@@ -361,7 +364,7 @@
 					animObjs.push(object);
 					scene.add( object );
 				} );
-
+*/
 
 				}
 				);
@@ -675,8 +678,6 @@ scene.children[8].rotation.y-=.026;
 
 //THREE.Vector3 {x: -7.821729849617995, y: 177.00545779576194, z: 100, constructor: function, set: function…}
 			//	var radius = 10;
-				camera.position.z=20;
-					camera.position.y=20;
 			//	camera.position.y -=0.5; //=-2.821729849617995 ;//+= ( mouseX - camera.position.x ) * .05;
 			//	if(camera.position.y<5){camera.position.y=60;	}
 //				camera.position.y =60.00545779576194;//+= ( - mouseY - camera.position.y ) * .05;
@@ -699,11 +700,19 @@ camera.lookAt( scene.position );
 
 				}
 */
+try{
+camera.lookAt( scene.children[scene.children.length-1].position );
+				camera.position.z=20;
+					camera.position.y=10;
+					camera.position.x=Math.floor(scene.children[scene.children.length-1].position.x);
+
+//					directionalLight.position = scene.children[scene.children.length-1].position;
+}catch(ex){
 camera.lookAt( scene.position );
-/*try{
-camera.lookAt( scene.children[4].position );
-}catch(ex){}
-*/
+
+
+}
+
 				renderer.render( scene, camera );
 
 			}

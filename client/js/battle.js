@@ -13,12 +13,13 @@ function Battle(socket){
 		console.log("world update"); 
 	});
 
-	var that = this
+	var that = this;
 
 	this.events.on("init", function(){
-		console.log(battle.battleData)
-		for (obj in battle.battleData){
-			 if ((battle.battleData[obj].GameServerTime!==undefined)) {
+		console.log(this.battleData);
+		that=this;
+		for (obj in this.battleData){
+			 if ((this.battleData[obj].GameServerTime!==undefined)) {
 				updateTime =  (new Date()).getTime() - lastUpdate;
 				lastUpdate = (new Date()).getTime();
 			}
@@ -29,8 +30,8 @@ function Battle(socket){
 
 	this.events.on("update", function(){ 
 
-		for (obj in battle.battleData){
-				var xobj = battle.battleData[obj];
+		for (obj in that.battleData){
+				var xobj = that.battleData[obj];
 				
 	 			if ((xobj.GameServerTime!==undefined))		{
 					updateTime =  Date.now() - lastUpdate;

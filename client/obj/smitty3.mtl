@@ -18,7 +18,6 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /Users/Michael/Desktop/blends/smity/textures/classicshoes_texture_diffuse.png
 
 newmtl Material.001
 Ns 96.078431
@@ -28,7 +27,6 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /Users/Michael/Desktop/blends/smity/textures/male02_diffuse_black.png
 
 newmtl Material.002
 Ns 96.078431
@@ -38,7 +36,6 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /Users/Michael/Desktop/blends/smity/textures/brown_eye.png
 
 newmtl Material.003
 Ns 96.078431
@@ -48,7 +45,6 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /Users/Michael/Desktop/blends/smity/textures/jeans_basic_diffuse.png
 
 newmtl Material.004
 Ns 96.078431
@@ -58,4 +54,3 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /Users/Michael/Desktop/blends/smity/textures/tshirt_texture_white.png
