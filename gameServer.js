@@ -33,7 +33,7 @@ function GameServer(io) {
 
 	var userBattles=[];
 	db.all("select rowid,* from userBattles",function(err,row){
-
+console.log(row);
 		row.forEach(function (userBattle){
 			//var x=row;
 			userBattle.activeCards=undefined;
@@ -172,6 +172,7 @@ this.netchan.update();
 
 
 GameServer.prototype.loadArea = function(filename){
+	/*
 	x=fs.readFileSync(filename);
 	newArea = new area(this);
 	areaProps = JSON.parse(x);
@@ -197,6 +198,7 @@ GameServer.prototype.loadArea = function(filename){
 
 
 	this.areaList.push(newArea);
+	*/
 	this.fileLoaded = true;
 };
 
