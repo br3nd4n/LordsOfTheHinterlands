@@ -341,6 +341,28 @@
 							scene.add( c  );
 						}
 					}
+
+
+
+
+				loader.load( 'obj/smitty2.obj', 'obj/smitty2.mtl', function ( object ) {
+					object.scale = new THREE.Vector3(.3,.3,.3);
+					bruiser=object;
+					object.myx = 10;
+					object.myy = 5;
+					animObjs.push(object);
+					scene.add( object );
+				} );
+				loader.load( 'obj/Nuepuw3.obj', 'obj/Nuepuw3.mtl', function ( object ) {
+					object.scale = new THREE.Vector3(.6,.6,.6);
+					bruiser=object;
+					object.myx = 35;
+					object.myy = 17;
+					animObjs.push(object);
+					scene.add( object );
+				} );
+
+
 				}
 				);
 
@@ -627,7 +649,7 @@
 
 	
 
-	},50);
+	},500);
 
 			function animate() {
 
