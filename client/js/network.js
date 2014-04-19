@@ -1,7 +1,7 @@
 
 //client side network module
 function Network(battle){
-	this.socket = socket;
+	this.socket = battle.socket;
 	this.battle = battle;
 
 	var that = this;
@@ -37,7 +37,7 @@ Network.prototype.receiveObjectList = function(data){
     for(d in BattleData){
       this.resolveNetIDs(BattleData[d]);
     }
-    battle.events.emit("init");
+    this.battle.events.emit("init");
 }
 
 Network.prototype.receiveObjectUpdate = function(data){
@@ -70,5 +70,5 @@ Network.prototype.receiveObjectUpdate = function(data){
 		this.resolveNetIDs(BattleData[d]);	
 	}
 
-	battle.events.emit("update");
+	this.battle.events.emit("update");
 }

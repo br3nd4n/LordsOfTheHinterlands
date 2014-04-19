@@ -9,12 +9,12 @@
 var network = require('./network.js');
 var fs = require('fs');
 var events = require('events');
-var player = require('./player.js');
+var Player = require('./player.js');
 var sqlite3 = require('sqlite3').verbose();
 
 exports = module.exports = GameServer;
 
-function GameServer(io, userConnections, db) {
+function GameServer(io) {
 	this.GameServerTime = 0;
 	this.clients = 0;
 	this.io = io;
@@ -111,7 +111,11 @@ function GameServer(io, userConnections, db) {
 	setInterval( function(){that.slowUpdate()}, 300); //1 fps
 //	setInterval( function(){that.update()}, 100); //1 fps
 
-	this.io.sockets.on('connection', function(socket){ that.newConnection(socket) });
+	this.io.sockets.on('connection', function(socket){ 
+		console.log('test4');
+		//console.log(socket);
+
+		that.newConnection(socket) });
 };
 
 
@@ -123,11 +127,8 @@ GameServer.prototype.__proto__ = events.EventEmitter.prototype;
 
 GameServer.prototype.newConnection = function(socket){
 	this.clients++;
-	console.log("socket");
-	console.log(socket);
 
-
-	player = new Player(this, socket);
+	var player = new Player(this, socket);
 	this.playerList.push(player);
 	this.emit("newplayer", player);
 

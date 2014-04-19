@@ -12,19 +12,19 @@ function Player(world, socket){
 	this.socket = socket;
 	playerCount++;
 	this.name = "space derp " + playerCount;
-	this.area=undefined;
-	world.netchan.registerObject(this);
 
-	this.on("player_name_set", function(player, data){ 
-		if(data.name != undefined){
-			player.name = name;
-		}
-	} );
+	this.on("player_name_set", 
+		function(player, data){ 
+			if(data.name != undefined){
+				player.name = name;
+			}
+		} 
+	);
 
 }
 
 Player.prototype.getSyncProps = function(){
-	return ['name','area'];
+	return ['name'];
 }
 
 //shim into the event callback so we can insert the player message
@@ -34,3 +34,5 @@ Player.prototype.on = function(event, callback){
 		callback(that, data);
 	})
 }
+
+Player.prototype.__proto__ = events.EventEmitter.prototype;
