@@ -11,6 +11,7 @@ var playerCount=0;
 function Player(world, socket){
 	this.socket = socket;
 	playerCount++;
+	this.type = 'player';
 	this.name = "player derp " + playerCount;
 	this.x  =Math.floor(Math.random()*40);
 	this.y  =Math.floor(Math.random()*18);
@@ -26,7 +27,7 @@ function Player(world, socket){
 }
 
 Player.prototype.getSyncProps = function(){
-	return ['name','x','y','modelid'];
+	return ['name','x','y','modelid','type'];
 }
 
 //shim into the event callback so we can insert the player message

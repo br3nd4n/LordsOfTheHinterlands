@@ -23,9 +23,6 @@
 			}
 			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
 		</style>
-	</head>
-
-	<body>
 		<script src="js/jquery-1.11.0.min.js"></script>
 
 		<script src="js/three.js"></script>
@@ -34,17 +31,47 @@
 		<script src="js/OrbitControls.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 
+	</head>
+
+	<body>
+		<script>
+		//custom game objects in their own js files 
+		</script>
 		<script src="js/events.js"></script>
 		<script src="js/network.js"></script>
 		<script src="js/battle.js"></script>
 
 		<script>
+
+
+			//global declarations
 			var lastUpdate=(new Date()).getTime();
 			var updateTime=(new Date()).getTime();
 
-			var player = {};
-			var otherPlayer = {};
+			var players = [];
 			var loader,socket,battle;
+			var container, stats;
+			var camera, scene, renderer,controls;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+			var projector;
+			var objects = [], plane;
+			var animObjs=[];
+			var models;
+			var directionalLight;
+
+			var grid = new Array(40);
+			for(var i=0;i<grid.length;i++){
+				grid[i] = Array(18);
+			}
+
+
+			init();
+			animate();
+
+
+
+
 
 			//setup a keypress handler
 			$(document).bind('keydown', function(e){
@@ -73,47 +100,25 @@
 								newy:myy
 							}
 						)
-
 					};
 	
-				} catch (ex ){
+				} catch (ex){
 
 				}
 			});
 
 
 
-			var container, stats;
-
-			var camera, scene, renderer,controls;
-			var timr=0;
-
-			var mouseX = 0, mouseY = 0;
-
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
-			var projector;
-			var offset = new THREE.Vector3(),INTERSECTED, SELECTED;
-			var mouse = new THREE.Vector2();
-			var objects = [], plane;
-			var animObjs=[];
-
-			var grid = new Array(40);
-			for(var i=0;i<grid.length;i++){
-				grid[i] = Array(18);
-			}
-
-			var models;
-			var directionalLight;
-
-			init();
-			animate();
 
 
 
 
 
 			function init() {
+
+
+
+
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
@@ -140,9 +145,52 @@
 				window.addEventListener( 'resize', onWindowResize, false );
 
 
+
+
+
+
 				loader = new THREE.OBJMTLLoader();
 				socket = io.connect(location.hostname); 
 				battle = new Battle(socket);
+				battle.events.on("init", function(data){
+						console.log('page');
+						//that.BattleData.push(player,otherPlayer);
+						for (obj in this.battleData){
+							if (this.BattleData[obj].type=='player'){
+								var x = {};
+								x.name = this.BattleData[obj].name;
+								x.x = this.BattleData[obj].x;
+								x.y = this.BattleData[obj].x;
+								x.modelId = this.BattleData[obj].modelId;
+								animObjs[x.modelId].myx = x.x;
+								animObjs[x.modelId].myy = x.y;
+																										
+							}
+
+						}
+
+					});
+				battle.events.on("update", function(data){
+						console.log('pageupdate');
+						for (obj in this.battleData){
+							try{
+							if (this.BattleData[obj].type=='player'){
+								var x = {};
+								x.name = this.BattleData[obj].name;
+								x.x = this.BattleData[obj].x;
+								x.y = this.BattleData[obj].x;
+								x.modelId = this.BattleData[obj].modelId;
+								animObjs[x.modelId].myx = x.x;
+								animObjs[x.modelId].myy = x.y;			
+								players.pugh(x);																					
+							}
+						} catch(ex){}
+
+						}
+
+					});
+
+
 
 
 				$.getJSON( "models.json", function( data ) {

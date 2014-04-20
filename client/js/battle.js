@@ -9,7 +9,7 @@ function Battle(socket){
 
 	this.events.on("init", function(data){
 		console.log(data);
-		that.BattleData.push(player,otherPlayer);
+		//that.BattleData.push(player,otherPlayer);
 		for (obj in this.battleData){
 			 if ((this.BattleData[obj].GameServerTime!==undefined)) {
 				updateTime =  (new Date()).getTime() - lastUpdate;
@@ -21,10 +21,15 @@ function Battle(socket){
 	});
 
 
-	this.events.on("update", function(){
+	this.events.on("update", function(data){
 		for (obj in that.BattleData){
 				var xobj = that.BattleData[obj];
-				
+
+				if(xobj.type!==undefined){
+				if (xobj.type=='player'){
+					console.log("new player update");	
+				}				
+			}
 	 			if ((xobj.GameServerTime!==undefined))		{
 					updateTime =  Date.now() - lastUpdate;
 					lastUpdate = Date.now();
