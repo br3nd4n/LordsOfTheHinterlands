@@ -105,10 +105,10 @@ function GameServer(io) {
 
 	
 //	setInterval( function(){that.slowUpdate()}, 300); //1 fps
-	setInterval( function(){that.update()}, 1000); //1 fps
+	setInterval( function(){that.update()}, 5000); //1 fps
 
 	this.io.sockets.on('connection', function(socket){ 
-		console.log('test4');
+		console.log('socket connection');
 		//console.log(socket);
 
 		that.newConnection(socket) });
@@ -125,6 +125,7 @@ GameServer.prototype.newConnection = function(socket){
 	this.clients++;
 
 	var player = new Player(this, socket);
+	player.id = this.clients;
 	this.playerList.push(player);
 	this.emit("newplayer", player);
 	this.netchan.registerObject(player);
@@ -150,8 +151,9 @@ GameServer.prototype.update = function(){
 		a.update(sTimeDiff);
 	}
 */
-	console.log("update");
-	this.emit("update", sTimeDiff);
+	//console.log("update");
+	//console.log(this.netchan.io.sockets.manager.server.connections);
+	//this.emit("update", sTimeDiff);
 	
 	//update our network channel
 	this.netchan.update();
@@ -163,7 +165,7 @@ GameServer.prototype.slowUpdate = function(that){
 		a.prototype = area.prototype;
 		a.updateSlow(1);
 	}
-this.netchan.update();
+	this.netchan.update();
 };
 
 

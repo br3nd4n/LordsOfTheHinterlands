@@ -10,7 +10,7 @@ var events = require('events')
 exports = module.exports = Network;
 
 function Network(battle) {
-	
+	var that = this;
 	//create a network object
 	//just import some of our functions below - better IMO than having a large list of nested functions
 	this.objectList = new Array(),
@@ -18,11 +18,8 @@ function Network(battle) {
 	this.nextObjectID = 0;
 	this.io = battle.io;
 
-	var that = this
 	battle.on('newplayer', function(player){
-		console.log('test1');
-		console.log(player);
-
+		console.log('battle newplayer');
 		that.onNewPlayer(player); 
 	}
 	);
@@ -33,13 +30,12 @@ Network.prototype.onNewPlayer = function(player){ //event registered with socket
 	//new connection!
 	//add ref to socket somewhere
 	//
-	console.log('player');
-	console.log(player);
+	console.log('onnewplayer');
 	
 	var socket = player.socket;
 	this.socketList.push(socket);
 
-	var that = this;
+//	var that = this;
 
 	//setup an event dispatch so we can directly fire events on specific object instances
 	player.on("network_objrpc", function(player, data){
@@ -61,6 +57,10 @@ Network.prototype.onNewPlayer = function(player){ //event registered with socket
 
 	fullUpdate = this.calcFullUpdate();
 	socket.emit("objectlist", fullUpdate);
+	
+	socket.emit("newplayercallback", player.netid);
+	console.log('newplayer netid ' + player.netid);
+
 }
 
 //register an object to be synchronized between client/server

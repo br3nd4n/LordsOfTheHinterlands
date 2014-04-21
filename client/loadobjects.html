@@ -48,7 +48,9 @@
 			var lastUpdate=(new Date()).getTime();
 			var updateTime=(new Date()).getTime();
 
+			var that  = this;
 			var players = [];
+			var thisplayer;
 			var loader,socket,battle;
 			var container, stats;
 			var camera, scene, renderer,controls;
@@ -59,6 +61,9 @@
 			var animObjs=[];
 			var models;
 			var directionalLight;
+
+			var oldlength=0;
+
 
 			var grid = new Array(40);
 			for(var i=0;i<grid.length;i++){
@@ -79,7 +84,7 @@
 				try{
 					if(e.which == 38){
 						//up key
-						console.log(player);
+						console.log(players);
 						player.model.myy +=1;
 						changed = true;
 					} else if(e.which == 40){
@@ -153,8 +158,9 @@
 				socket = io.connect(location.hostname); 
 				battle = new Battle(socket);
 				battle.events.on("init", function(data){
-						console.log('page');
+						console.log('battle init');
 						//that.BattleData.push(player,otherPlayer);
+						/*
 						for (obj in this.battleData){
 							if (this.BattleData[obj].type=='player'){
 								var x = {};
@@ -168,10 +174,14 @@
 							}
 
 						}
+						*/
 
 					});
+
 				battle.events.on("update", function(data){
-						console.log('pageupdate');
+						console.log('battle update');
+
+						/*
 						for (obj in this.battleData){
 							try{
 							if (this.BattleData[obj].type=='player'){
@@ -187,9 +197,30 @@
 						} catch(ex){}
 
 						}
-
+						*/
 					});
 
+					battle.events.on("newplayercallback", function(data){
+						console.log('new player loadobject callback');
+						
+						/*
+						for (obj in this.battleData){
+							try{
+							if (this.BattleData[obj].type=='player'){
+								var x = {};
+								x.name = this.BattleData[obj].name;
+								x.x = this.BattleData[obj].x;
+								x.y = this.BattleData[obj].x;
+								x.modelId = this.BattleData[obj].modelId;
+								animObjs[x.modelId].myx = x.x;
+								animObjs[x.modelId].myy = x.y;			
+								players.pugh(x);																					
+							}
+						} catch(ex){}
+
+						}
+						*/
+					});
 
 
 

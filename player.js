@@ -9,6 +9,7 @@ exports = module.exports = Player;
 var playerCount=0;
 
 function Player(world, socket){
+	that = this;
 	this.socket = socket;
 	playerCount++;
 	this.type = 'player';
@@ -32,7 +33,9 @@ Player.prototype.getSyncProps = function(){
 
 //shim into the event callback so we can insert the player message
 Player.prototype.on = function(event, callback){
-	var that = this;
+	//var that = this;
+	console.log('player event');
+	console.log(event);
 	this.socket.on(event, function(data){
 		callback(that, data);
 	})
