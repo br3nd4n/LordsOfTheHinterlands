@@ -56,6 +56,7 @@
 				}
 
 			var players = [];
+			var gridObj = [];
 			var thisplayer;
 			var loader,socket,battle;
 
@@ -66,6 +67,8 @@
 			var projector;
 			var objects = [], plane;
 			var animObjs=[];
+			var baseObjs=[];
+			
 			var models;
 			var directionalLight;
 
@@ -81,12 +84,10 @@
 						loader.load( 'obj/' + entry[0], 'obj/' + entry[1], 
 							function ( object ) {
 								object.scale = new THREE.Vector3(entry[2][0],entry[2][1],entry[2][2]);
-								object.myx = 0;
-								object.myy = 0;
-
+			
 								object.visible = false;
-								animObjs.push(object);
-								scene.add( object );
+								baseObjs.push(object);
+								//scene.add( object );
 							} 
 						);
 					}
@@ -109,7 +110,7 @@
 
 				players.forEach(function(obj){
 					if(animObjs[obj.id] == undefined){
-						var c = animObjs[0].clone();
+						var c = baseObjs[0].clone();
 						animObjs[obj.id] = c;
 						scene.add(c);
 					}
@@ -142,7 +143,7 @@
 				players[data.id] = data;
 
 				if(animObjs[data.id] == undefined){
-					var c = animObjs[0].clone();
+					var c = baseObjs[0].clone();
 					animObjs[data.id] = c;
 					c.visible=true;
 					scene.add(c);
@@ -229,6 +230,8 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );				
 				container.appendChild( renderer.domElement );
 
+				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
 				window.addEventListener( 'resize', onWindowResize, false );
 				
 			}
@@ -253,6 +256,53 @@
 				});
 			},500);
 
+			function onDocumentMouseDown( event ) {
+
+				event.preventDefault();
+
+				var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+
+				projector.unprojectVector( vector, camera );
+
+				var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+				var intersects = raycaster.intersectObjects( gridObj );
+				var PI2 = Math.PI * 2;
+				particleMaterial = new THREE.SpriteCanvasMaterial( {
+
+					color: 0x000000,
+					program: function ( context ) {
+
+						context.beginPath();
+						context.arc( 0, 0, 0.5, 0, PI2, true );
+						context.fill();
+
+					}
+
+				} );
+
+				if ( intersects.length > 0 ) {
+
+					intersects[0].object.parent.parent.rotation.x += 180;
+//					intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
+					//intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
+
+				//	var particle = new THREE.Sprite( particleMaterial );
+				//	particle.position = intersects[ 0 ].point;
+				//	particle.scale.x = particle.scale.y = 16;
+				//	scene.add( particle );
+
+				}
+
+				/*
+				// Parse all the faces
+				for ( var i in intersects ) {
+
+					intersects[ i ].face.material[ 0 ].color.setHex( Math.random() * 0xffffff | 0x80000000 );
+
+				}
+				*/
+			}
 
 			function animate() {
 				requestAnimationFrame( animate );
@@ -302,6 +352,10 @@
 							c.position.z= y-9;
 							c.position.y=0;
 							grid[x][y]=[c.position.x,c.position.z];
+							c.children[0].children[1].parent = c.children[0];
+							c.children[0].parent=c;
+							gridObj.push(c.children[0].children[1]);
+
 							scene.add( c  );
 						}
 					}
