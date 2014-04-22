@@ -24,13 +24,13 @@ Network.prototype.resolveNetIDs = function(obj){
 		try {
 		if(pobj._netid_ptr !== undefined){
 			obj[prop] = BattleData[pobj._netid_ptr];
-		} 
+		} else if(typeof(pobj) == "object" && pobj !== null){
+		 	console.log("rni: "+prop)
+		 	//console.log(pobj)
+		 	this.resolveNetIDs(pobj);
+		 } 
+
 	} catch (errx){}
-		// else if(typeof(pobj) == "object" && pobj !== null){
-		// 	//console.log("rni: "+prop)
-		// 	//console.log(pobj)
-		// 	this.resolveNetIDs(pobj);
-		// } 
 	}
 }
 
@@ -104,36 +104,6 @@ Network.prototype.receiveNewPlayerCallback = function(data){
 	console.log("new player callback");
 
 	console.log(data);
-/*
-	//update loop
-	for(d in data){
-		var netid = data[d].netid;
-
-		if(BattleData[netid] === undefined){ //new object received
-			BattleData[netid] = data[d].data;
-			try{
-				if((BattleData[netid].type='player') && (BattleData.length != this.battle.oldlength)) {
-					console.log('new player added');
-					this.battle.players.push(netid);
-
-
-				}
-			} catch(ex){}
-		} else {
-			//update to existing object
-			var obj = data[d].data;
-			for(prop in obj){
-				BattleData[netid][prop] = obj[prop];
-				//console.log("updating prop: "+prop+" = "+obj[prop]);
-			}
-		}
-	}
-
-	//fix up any pointers
-	for(d in BattleData){
-		this.resolveNetIDs(BattleData[d]);	
-	}
-*/
 
 	this.battle.events.emit("newplayercallback");
 }

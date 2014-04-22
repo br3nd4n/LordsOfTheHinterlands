@@ -22,5 +22,3 @@ app.use(express.static(__dirname + '/client/'));
 
 
 var gameServer = new gameServer(io);
-
-
