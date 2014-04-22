@@ -1,0 +1,69 @@
+
+
+"Basehero1_Smitty": {
+			"battlefieldtoken" :{
+
+				}
+				battleimage{
+
+				}
+				tokenname{
+
+				}
+				statatt{
+
+				}
+				statSta{
+
+				}
+				statHea{
+
+				}
+				effectimages{
+
+				}
+				hovermenu{
+
+				}
+				onclick{
+
+				}
+				ondrag{
+
+				}
+
+			}
+
+		trayimage{
+
+				}
+				onclick{
+
+				}
+				ondrag{
+
+				}
+
+		}
+
+		Catalogimage{
+				shapeoutline{
+
+				}
+				trayimage{
+
+				}
+				tokenname{
+
+				}
+				hovermenu{
+
+				}
+
+
+
+
+		}
+
+
+}

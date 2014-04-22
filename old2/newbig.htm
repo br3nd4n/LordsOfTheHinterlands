@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="wf-facitweb-n4-active wf-facitweb-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0,width=device-width">
+	<title>Test</title>
+
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  	
+	<script src="js/jquery-1.11.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.svg.css"> 
+<script type="text/javascript" src="js/jquery.svg.js"></script>
+
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script  type="text/javascript" >
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+</script>
+
+
+
+<script  type="text/javascript" >
+
+//game inits
+
+var libBuildings,curBuildings,libCards,curCards;
+
+
+
+</script>
+
+	<style>
+  			#draggable { width: 150px; height: 150px; padding: 0.5em; }
+	  </style>
+
+  <script>
+	  $(function() {
+	  	$( "div[type='card']" ).draggable();
+	    //$("#draggable").draggable();
+	  });
+  </script>
+
+<script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
+
+</head>
+<body>
+
+ 
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Main Menu</a></li>
+    <li><a href="#tabs-2">City Map</a></li>
+    <li><a href="#tabs-3">Battlefield</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p>This is where matchmaking and options will be set</p>
+  </div>
+  <div id="tabs-2">
+    <p>This is where the city/army will be managed</p>
+</div>
+  <div id="tabs-3">
+	<div id="photo-demo" style="width: 1280px; height: 720px;">	
+	</div>
+
+<div id="bottomcontrols">
+
+
+<div id="axecard" type='card' class="ui-widget-content"
+style="width: 50px; height: 100px;">
+  <p>axe</p>
+</div>
+ 
+<div id="warriorcard" type='card' class="ui-widget-content" 
+style="width: 50px; height: 100px;">
+  <p>warrior</p>
+</div>
+<div id="mediccard" type='card' class="ui-widget-content" style="width: 50px; height: 100px;">
+  <p>medic</p>
+</div>
+<div id="shieldcard" type='card' class="ui-widget-content" 
+style="width: 50px; height: 100px;">
+  <p>Shield</p>
+</div>
+<div id="herocard" type='card' class="ui-widget-content"
+style="width: 50px; height: 100px;">
+  <p>HEEEEERRRRROOOOOOO</p>
+</div>
+
+</div>
+	
+  </div>
+</div>
+
+
+
+
+
+<script  type="text/javascript" >
+
+function drawInitial(svg) {
+	svg.load('tesm2.svg', {addTo: true, changeSize: false});
+	
+
+//JSON\
+
+	var jqxhr = $.getJSON( "cards.json", function() {
+		console.log( "success" );
+	})
+	.fail(function(textstatus,error) {
+		console.log( textstatus + ", " + error );
+	});
+ 
+ 
+	jqxhr.complete(function() {
+		libBuildings = jqxhr.responseJSON.cardFlow.buildings;
+		libCards = jqxhr.responseJSON.cardFlow.cards;
+		
+		console.log(libCards);
+		console.log(libBuildings);
+
+	var arrX=0,arrY=0;
+	var newdefs = svg.defs('newdefs');
+
+	$.each(jsonObj,function(key,val){
+		arrX+=1;
+		var tex = 'svguse'+parseInt(arrX)+'x'+parseInt(arrX);
+		//$('#'+ tex).attr("xlink:href","");
+		console.log(key);
+
+
+		var sym = svg.symbol(newdefs,'sym'+key,0,0,35,35);
+		var qq = svg.clone(sym,$('#polyhex'));
+
+		svg.image(sym,0,0,35,35,val.battleImage,{id:'img'+key});
+
+		$('#'+ tex).attr("xlink:href",'sym'+key);
+		
+	});
+
+});
+
+
+
+
+}
+	$('#photo-demo').svg(drawInitial);
+
+</script>
+
+
+
+</body></html>

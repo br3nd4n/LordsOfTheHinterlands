@@ -1,0 +1,217 @@
+{
+    "cardFlow": {
+        "title": "WorkingBeta",
+        "buildings": [
+            {
+                "Title": "Town Hall",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 3,
+                "currentcards": 0,
+                "cards": [
+                    "hero"
+                ]
+            },
+            {
+                "Title": "Barracks",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 2,
+                "currentcards": 0,
+                "cards": [
+                    "fighter"
+                ]
+            },
+            {
+                "Title": "Barracks",
+                "level": 2,
+                "cardspersecond": 0.5,
+                "maxcards": 2,
+                "currentcards": 0,
+                "cards": [
+                    "bruiser"
+                ]
+            },
+            {
+                "Title": "Blacksmith",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 4,
+                "currentcards": 0,
+                "cards": [
+                    "sword",
+                    "axe",
+                    "shield",
+                    "shield"
+                ]
+            },
+            {
+                "Title": "Infirmary",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 4,
+                "currentcards": 0,
+                "cards": [
+                    "medic"
+                ]
+            },
+            {
+                "Title": "Trainer",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 4,
+                "currentcards": 0,
+                "cards": [
+                    "staminaBag"
+                ]
+            },
+            {
+                "Title": "BattleMaster",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 4,
+                "currentcards": 0,
+                "cards": [
+                    "attackBag"
+                ]
+            },
+            {
+                "Title": "School",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 4,
+                "currentcards": 0,
+                "cards": [
+                    "addSkill"
+                ]
+            },
+            {
+                "Title": "Gym",
+                "level": 1,
+                "cardspersecond": 0.5,
+                "maxcards": 4,
+                "currentcards": 0,
+                "cards": [
+                    "addAttack",
+                    "addDefense"
+                ]
+            }
+        ],
+        "cards": [
+            {
+                "Title": "Test Sword",
+                "CardType": "sword",
+                "HoverText": "This is a test sword.",
+                "stats": {
+                    "addAttackOnUse": 2
+                }
+            },
+            {
+                "Title": "Test Axe",
+                "CardType": "axe",
+                "HoverText": "This is a test axe.",
+                "stats": {
+                    "addAttackOnUse": 2
+                }
+            },
+            {
+                "Title": "Test Shield",
+                "CardType": "shield",
+                "HoverText": "This is a test shield.",
+                "stats": {
+                    "addHealthOnUse": 2
+                }
+            },
+            {
+                "Title": "Test Hero",
+                "CardType": "hero",
+                "HoverText": "This is the first test Hero.",
+                "stats": {
+                    "health": 2,
+                    "attack": 2,
+                    "stamina": 2
+                }
+            },
+            {
+                "Title": "Test Hero Two",
+                "CardType": "hero",
+                "HoverText": "This is the second test Hero.",
+                "stats": {
+                    "health": 2,
+                    "attack": 2,
+                    "stamina": 2
+                }
+            },
+            {
+                "Title": "Fighter",
+                "CardType": "fighter",
+                "HoverText": "This is the fighter.",
+                "stats": {
+                    "health": 2,
+                    "attack": 2,
+                    "stamina": 2
+                }
+            },
+            {
+                "Title": "Bruiser",
+                "CardType": "bruiser",
+                "HoverText": "This is the Bruiser.",
+                "stats": {
+                    "health": 2,
+                    "attack": 2,
+                    "stamina": 2
+                }
+            },
+            {
+                "Title": "Test Medic",
+                "CardType": "medic",
+                "HoverText": "This is a test Medic.",
+                "stats": {
+                    "carry": 2,
+                    "stamina": 3,
+                    "health": 2
+                }
+            },
+            {
+                "Title": "Attack Bag",
+                "CardType": "attackBag",
+                "HoverText": "This is an attack bag.",
+                "stats": {
+                    "addTempAttack": 2
+                }
+            },
+            {
+                "Title": "Stamina Bag",
+                "CardType": "staminaBag",
+                "HoverText": "This is a stamina bag.",
+                "stats": {
+                    "addTempStamina": 2
+                }
+            },
+            {
+                "Title": "Add Skill",
+                "CardType": "addSkill",
+                "HoverText": "This is skill buff.",
+                "stats": {
+                    "addPermSkill": 2
+                }
+            },
+            {
+                "Title": "Add Health",
+                "CardType": "addHealth",
+                "HoverText": "This is a health buff.",
+                "stats": {
+                    "addPermHealthBuff": 2
+                }
+            },
+            {
+                "Title": "Add Stamina",
+                "CardType": "addStamina",
+                "HoverText": "This is a stamina buff.",
+                "stats": {
+                    "addPermStamina": 2
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - loaders - OBJ MTL loader</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+		<script src="js/jquery-1.11.0.min.js"></script>
+
+		<script src="js/three.js"></script>
+		<script src="js/MTLLoader.js"></script>
+		<script src="js/OBJMTLLoader.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+
+	</head>
+
+	<body>
+		<script>
+		//custom game objects in their own js files 
+		</script>
+		<script src="js/events.js"></script>
+		<script src="js/network.js"></script>
+		<script src="js/battle.js"></script>
+
+		<script>
+
+
+			//global declarations
+			var lastUpdate=(new Date()).getTime();
+			var updateTime=(new Date()).getTime();
+
+			var that  = this;
+			var players = [];
+			var thisplayer;
+			var loader,socket,battle;
+			var container, stats;
+			var camera, scene, renderer,controls;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+			var projector;
+			var objects = [], plane;
+			var animObjs=[];
+			var models;
+			var directionalLight;
+
+			var oldlength=0;
+
+
+			var grid = new Array(40);
+			for(var i=0;i<grid.length;i++){
+				grid[i] = Array(18);
+			}
+
+
+			init();
+			animate();
+
+
+
+
+
+			//setup a keypress handler
+			$(document).bind('keydown', function(e){
+				var changed = false;
+				try{
+					if(e.which == 38){
+						//up key
+						console.log(players);
+						player.model.myy +=1;
+						changed = true;
+					} else if(e.which == 40){
+						player.model.myy -=1;
+						changed = true;
+					} else if(e.which == 37){
+						player.model.myx +=1;
+						changed = true;
+					} else if(e.which == 39){
+						player.model.myx -=1;
+						changed = true;
+					}
+					if(changed==true) {
+						battle.socket.emit(
+							'positionChanged',
+							{
+								newx: myx,
+								newy:myy
+							}
+						)
+					};
+	
+				} catch (ex){
+
+				}
+			});
+
+
+
+
+
+
+
+
+			function init() {
+
+
+
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 20;
+				camera.position.y = 20;
+
+				//controls = new THREE.OrbitControls( camera );
+				//controls.addEventListener( 'change', render );
+
+				scene = new THREE.Scene();
+				projector = new THREE.Projector();
+
+				var ambient = new THREE.AmbientLight( 0xffffff );
+				scene.add( ambient );
+
+				directionalLight = new THREE.DirectionalLight( 0xffffff );
+				directionalLight.position.set( 0, 0.5, 1 ).normalize();
+				scene.add( directionalLight );
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );				
+				container.appendChild( renderer.domElement );
+				window.addEventListener( 'resize', onWindowResize, false );
+
+
+
+
+
+
+				loader = new THREE.OBJMTLLoader();
+				socket = io.connect(location.hostname); 
+				battle = new Battle(socket);
+				battle.events.on("init", function(data){
+						console.log('battle init');
+						//that.BattleData.push(player,otherPlayer);
+						/*
+						for (obj in this.battleData){
+							if (this.BattleData[obj].type=='player'){
+								var x = {};
+								x.name = this.BattleData[obj].name;
+								x.x = this.BattleData[obj].x;
+								x.y = this.BattleData[obj].x;
+								x.modelId = this.BattleData[obj].modelId;
+								animObjs[x.modelId].myx = x.x;
+								animObjs[x.modelId].myy = x.y;
+																										
+							}
+
+						}
+						*/
+
+					});
+
+				battle.events.on("update", function(data){
+						console.log('battle update');
+
+						/*
+						for (obj in this.battleData){
+							try{
+							if (this.BattleData[obj].type=='player'){
+								var x = {};
+								x.name = this.BattleData[obj].name;
+								x.x = this.BattleData[obj].x;
+								x.y = this.BattleData[obj].x;
+								x.modelId = this.BattleData[obj].modelId;
+								animObjs[x.modelId].myx = x.x;
+								animObjs[x.modelId].myy = x.y;			
+								players.pugh(x);																					
+							}
+						} catch(ex){}
+
+						}
+						*/
+					});
+
+					battle.events.on("newplayercallback", function(data){
+						console.log('new player loadobject callback');
+						
+						/*
+						for (obj in this.battleData){
+							try{
+							if (this.BattleData[obj].type=='player'){
+								var x = {};
+								x.name = this.BattleData[obj].name;
+								x.x = this.BattleData[obj].x;
+								x.y = this.BattleData[obj].x;
+								x.modelId = this.BattleData[obj].modelId;
+								animObjs[x.modelId].myx = x.x;
+								animObjs[x.modelId].myy = x.y;			
+								players.pugh(x);																					
+							}
+						} catch(ex){}
+
+						}
+						*/
+					});
+
+
+
+				$.getJSON( "models.json", function( data ) {
+					loader.load( 'obj/marbleHex.obj', 'obj/marbleHex.mtl', gengrid);
+
+					data.models.forEach(
+						function(entry){
+							loader.load( 'obj/' + entry[0], 'obj/' + entry[1], 
+								function ( object ) {
+									object.scale = new THREE.Vector3(entry[2][0],entry[2][1],entry[2][2]);
+									object.myx = Math.floor(Math.random()*41);
+									object.myy = Math.floor(Math.random()*18);
+									animObjs.push(object);
+									scene.add( object );
+								} 
+							);
+						}
+					);
+				});
+
+
+
+
+
+//				renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
+//				renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+//				renderer.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
+
+				
+			}
+
+			function onWindowResize() {
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+
+
+			setInterval(function(){
+				animObjs.forEach(function(entry){
+					try {
+						click(entry);
+					}catch(ex){
+					}
+
+				});
+			},500);
+
+
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+
+				camera.lookAt( scene.position );
+				renderer.render( scene, camera );
+
+			}
+			function click(object) {
+/*
+				object.myy+=1;
+				if(object.myy>=18){
+					object.myy=0;
+					object.myx +=1;
+					if(object.myx>=40){
+						object.myx=Math.floor(Math.random()*40);
+						object.myy=Math.floor(Math.random()*18);
+					}
+
+				}
+				*/
+				object.position.x = grid[object.myx][object.myy][0];
+				object.position.z = grid[object.myx][object.myy][1];
+			}
+
+			function gengrid( object ) {
+					object.scale = new THREE.Vector3(.17,.17,.17);
+					var x,y;
+					var offset=0.5;
+					var toggle=0;
+
+
+					for(y=0;y<18;y++){
+
+						if (toggle==0){toggle=1;}else{toggle=0;}
+								
+						for(x=0;x<40;x++){
+								
+							var c = object.clone();		
+							var q = x- 20 ;
+							if (toggle==1){q += offset;}
+							c.position.x = q;
+							c.position.z= y-9;
+							c.position.y=0;
+							grid[x][y]=[c.position.x,c.position.z];
+							scene.add( c  );
+						}
+					}
+				}
+
+		</script>
+
+	</body>
+</html>

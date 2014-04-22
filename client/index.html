@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Rulers of the Hinterlands</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+		<script src="js/jquery-1.11.0.min.js"></script>
+
+		<script src="js/three.js"></script>
+		<script src="js/MTLLoader.js"></script>
+		<script src="js/OBJMTLLoader.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+
+	</head>
+
+	<body>
+		<div id="loginform">
+			<form>
+				<span>handle: <input type="text" id="fname"></span><br>
+				<span>digits: <input type="password" id="lname"></span><br>
+				<input type="button" value="checkit" onclick="dolog()">
+			</form>
+		</div>
+		<script>
+		//custom game objects in their own js files 
+		</script>
+		<script src="js/events.js"></script>
+
+		<script>
+				function dolog(){
+					var x = {};
+					x.fname = ($("#fname").val());
+					x.lname = ($("#lname").val());
+					console.log(x);
+					socket.emit("login",x);
+				}
+
+			var players = [];
+			var thisplayer;
+			var loader,socket,battle;
+
+			var container, stats;
+			var camera, scene, renderer,controls;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+			var projector;
+			var objects = [], plane;
+			var animObjs=[];
+			var models;
+			var directionalLight;
+
+			var oldlength=0;
+			loader = new THREE.OBJMTLLoader();
+			scene = new THREE.Scene();
+
+			$.getJSON( "models.json", function( data ) {
+				loader.load( 'obj/marbleHex.obj', 'obj/marbleHex.mtl', gengrid);
+
+				data.models.forEach(
+					function(entry){
+						loader.load( 'obj/' + entry[0], 'obj/' + entry[1], 
+							function ( object ) {
+								object.scale = new THREE.Vector3(entry[2][0],entry[2][1],entry[2][2]);
+								object.myx = 0;
+								object.myy = 0;
+
+								object.visible = false;
+								animObjs.push(object);
+								scene.add( object );
+							} 
+						);
+					}
+				);
+			});
+
+
+
+			var grid = new Array(40);
+			for(var i=0;i<grid.length;i++){
+				grid[i] = Array(18);
+			}
+
+			socket = io.connect(location.hostname); 
+
+			socket.on("logincallback",function(data){
+
+				players = data.players;
+				thisplayer = data.playerid;
+
+				players.forEach(function(obj){
+					if(animObjs[obj.id] == undefined){
+						var c = animObjs[0].clone();
+						animObjs[obj.id] = c;
+						scene.add(c);
+					}
+
+					var object = animObjs[obj.id];
+					object.position.x = grid[obj.myx][obj.myy][0];
+					object.position.z = grid[obj.myx][obj.myy][1];
+					object.visible=true;
+				
+				});
+
+
+				console.log(data);
+
+				$("#loginform").remove();
+
+				init();
+				animate();
+
+			});
+
+
+
+			socket.on("updatePlayer",function(data){
+
+
+				console.log('updateplayer');
+				console.log(data);
+
+				players[data.id] = data;
+
+				if(animObjs[data.id] == undefined){
+					var c = animObjs[0].clone();
+					animObjs[data.id] = c;
+					c.visible=true;
+					scene.add(c);
+				};
+
+				var object = animObjs[data.id];
+				try{
+					object.position.x = grid[data.myx][data.myy][0];
+					object.position.z = grid[data.myx][data.myy][1];
+					//ject.visible = true;
+				} catch(ex){
+					console.log('position error');
+					console.log(ex);
+
+				}
+			});
+
+
+
+
+
+			function init() {
+
+
+			//setup a keypress handler
+			$(document).bind('keydown', function(e){
+				var changed = false;
+//				try{
+					if(e.which == 38){
+						//up key
+						//console.log(players);
+						players[thisplayer].myy +=1;
+						changed = true;
+					} else if(e.which == 40){
+						players[thisplayer].myy -=1;
+						changed = true;
+					} else if(e.which == 37){
+						players[thisplayer].myx +=1;
+						changed = true;
+					} else if(e.which == 39){
+						players[thisplayer].myx -=1;
+						changed = true;
+					}
+					if(changed==true) {
+						socket.emit(
+							'positionChanged',
+							{
+								playerid: thisplayer,
+								newx: players[thisplayer].myx,
+								newy: players[thisplayer].myy
+							}
+						)
+					};
+	
+//				} catch (ex){
+
+//				}
+			});
+
+
+
+
+
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 20;
+				camera.position.y = 20;
+
+				//controls = new THREE.OrbitControls( camera );
+				//controls.addEventListener( 'change', render );
+				projector = new THREE.Projector();
+
+				var ambient = new THREE.AmbientLight( 0xffffff );
+				scene.add( ambient );
+
+				directionalLight = new THREE.DirectionalLight( 0xffffff );
+				directionalLight.position.set( 0, 0.5, 1 ).normalize();
+				scene.add( directionalLight );
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );				
+				container.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+				
+			}
+
+			function onWindowResize() {
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+
+
+			setInterval(function(){
+				animObjs.forEach(function(entry){
+					try {
+						click(entry);
+					}catch(ex){
+					}
+
+				});
+			},500);
+
+
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+
+				camera.lookAt( scene.position );
+				renderer.render( scene, camera );
+
+			}
+			function click(object) {
+/*
+				object.myy+=1;
+				if(object.myy>=18){
+					object.myy=0;
+					object.myx +=1;
+					if(object.myx>=40){
+						object.myx=Math.floor(Math.random()*40);
+						object.myy=Math.floor(Math.random()*18);
+					}
+
+				}
+				*/
+				object.position.x = grid[object.myx][object.myy][0];
+				object.position.z = grid[object.myx][object.myy][1];
+			}
+
+			function gengrid( object ) {
+					object.scale = new THREE.Vector3(.17,.17,.17);
+					var x,y;
+					var offset=0.5;
+					var toggle=0;
+
+
+					for(y=0;y<18;y++){
+
+						if (toggle==0){toggle=1;}else{toggle=0;}
+								
+						for(x=0;x<40;x++){
+								
+							var c = object.clone();		
+							var q = x- 20 ;
+							if (toggle==1){q += offset;}
+							c.position.x = q;
+							c.position.z= y-9;
+							c.position.y=0;
+							grid[x][y]=[c.position.x,c.position.z];
+							scene.add( c  );
+						}
+					}
+				}
+
+		</script>
+
+	</body>
+</html>
