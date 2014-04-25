@@ -23,6 +23,31 @@
 			}
 			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
 		</style>
+
+
+
+		<script type="x-shader/x-vertex" id="vertexShader">
+			uniform vec3 color;
+			attribute float size;
+
+			varying vec3 vColor;  // 'varying' vars are passed to the fragment shader
+
+			void main() {
+			  vColor = color;   // pass the color to the fragment shader
+			  gl_PointSize = size;
+			}		  
+		</script>
+
+		<script type="x-shader/x-fragment" id="fragmentShader">
+			varying vec3 vColor;
+
+			void main() {
+			  gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+			}		  
+		</script>
+
+
+
 		<script src="js/jquery-1.11.0.min.js"></script>
 
 		<script src="js/three.js"></script>
@@ -72,6 +97,10 @@
 			var models;
 			var directionalLight;
 
+
+
+
+
 			var oldlength=0;
 			loader = new THREE.OBJMTLLoader();
 			scene = new THREE.Scene();
@@ -92,6 +121,28 @@
 						);
 					}
 				);
+
+			// Define a color-typed uniform
+			var uniforms = {
+			  myColor: { type: "c", value: new THREE.Color( 0xffffff ) },
+			};
+			var attributes = {
+			  size: { type: 'f', value: [] },
+			};
+
+			for (var i=0; i < numVertices; i++) {
+			  attributes.size.value[i] = 5 + Math.floor(Math.random() * 10);
+			}
+
+			var material = new THREE.ShaderMaterial({
+			  uniforms: uniforms,
+			  attributes: attributes,
+			  vertexShader: document.getElementById('vertexShader').textContent,
+			  fragmentShader: document.getElementById('fragmentShader').textContent
+			});
+
+
+				
 			});
 
 
